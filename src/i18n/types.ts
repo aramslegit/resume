@@ -29,6 +29,20 @@ export interface LanguageSkillItem {
   level: string;
 }
 
+export type PrivacyGroup = "contact" | "company" | "experienceCompanies";
+export type PrivacyField =
+  | "phone"
+  | "email"
+  | "location"
+  | "linkedIn"
+  | "companyName"
+  | "experienceCompanies";
+
+export interface PrivacyConfig {
+  groups: Record<PrivacyGroup, boolean>;
+  fields: Record<PrivacyField, boolean>;
+}
+
 export interface ResumeCopy {
   a11y: {
     toggleTheme: string;
@@ -92,7 +106,8 @@ export interface ResumeCopy {
     };
   };
   hero: {
-    name: string;
+    firstName: string;
+    lastName: string;
     download: string;
     role: string;
     location: string;

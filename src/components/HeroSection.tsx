@@ -8,10 +8,13 @@ import { getResumeVariantFilename, RESUME_LATEST_URL_DIR } from "@/config/resume
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { usePaletteTheme } from "@/theme/paletteTheme";
 import { useMemo } from "react";
+import { usePrivacy } from "@/hooks/use-privacy";
 
 const HeroSection = () => {
   const { copy, language, formatRich } = useI18n();
+  const { isVisible } = usePrivacy();
   const helloTooltip = copy.hero.helloTooltip;
+  const fullName = `${copy.hero.firstName} ${copy.hero.lastName}`;
   const mailtoHref = `mailto:${copy.hero.email}`;
   const telHref = `tel:${copy.hero.phone.replace(/\s+/g, "")}`;
   const { theme: paletteTheme } = usePaletteTheme();
@@ -45,7 +48,7 @@ const HeroSection = () => {
             <div className="h-36 w-36 overflow-hidden rounded-full shadow-elevated md:h-44 md:w-44">
               <img
                 src={profilePhoto}
-                alt={copy.hero.name}
+                alt={fullName}
                 className="block h-full w-full scale-[1.065] object-cover object-[50%_30%]"
               />
             </div>
@@ -82,46 +85,58 @@ const HeroSection = () => {
         <div className="animate-slide-up flex-1">
           <div className="accent-bar" />
           <h1 className="mb-3 font-serif text-4xl font-semibold text-foreground md:text-5xl lg:text-6xl">
-            {copy.hero.name}
+            {fullName}
           </h1>
           <p className="mb-6 text-xl font-light text-muted-foreground md:text-2xl">
             {copy.hero.role}
           </p>
           <p className="mb-8 max-w-2xl text-base leading-relaxed text-secondary-foreground md:text-lg">
             {formatRich(copy.hero.summary, {
-              companyName: <strong>{copy.hero.companyName}</strong>,
+              companyName: isVisible("companyName") ? (
+                <strong>{copy.hero.companyName}</strong>
+              ) : (
+                <strong>a software development company</strong>
+              ),
             })}
           </p>
 
           {/* Contact Info */}
           <div className="flex flex-wrap gap-4 text-sm md:gap-6">
-            <a
-              href={mailtoHref}
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
-            >
-              <Mail className="h-4 w-4" />
-              {copy.hero.email}
-            </a>
-            <a
-              href={telHref}
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
-            >
-              <Phone className="h-4 w-4" />
-              {copy.hero.phone}
-            </a>
-            <span className="inline-flex items-center gap-2 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              {copy.hero.location}
-            </span>
-            <a
-              href="https://linkedin.com/in/arammamian"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
-            >
-              <Linkedin className="h-4 w-4" />
-              {copy.hero.linkedInLabel}
-            </a>
+            {isVisible("email") && (
+              <a
+                href={mailtoHref}
+                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
+              >
+                <Mail className="h-4 w-4" />
+                {copy.hero.email}
+              </a>
+            )}
+            {isVisible("phone") && (
+              <a
+                href={telHref}
+                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
+              >
+                <Phone className="h-4 w-4" />
+                {copy.hero.phone}
+              </a>
+            )}
+            {isVisible("location") && (
+              <span className="inline-flex items-center gap-2 text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                {copy.hero.location}
+              </span>
+            )}
+            {isVisible("linkedIn") && (
+              <a
+                href="https://linkedin.com/in/arammamian"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-accent"
+              >
+                <Linkedin className="h-4 w-4" />
+                {copy.hero.linkedInLabel}
+              </a>
+            )}
           </div>
         </div>
       </div>

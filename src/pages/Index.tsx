@@ -37,7 +37,7 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">
               {format(copy.footer.copyright, {
                 year: new Date().getFullYear(),
-                name: copy.hero.name,
+                name: `${copy.hero.firstName} ${copy.hero.lastName}`,
               })}{" "}
               {copy.footer.availableForOpportunities}
             </p>

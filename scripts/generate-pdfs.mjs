@@ -73,11 +73,22 @@ function run(cmd, args, { cwd, env } = {}) {
 }
 
 function spawnLongRunning(cmd, args, { cwd, env } = {}) {
-  return spawn(cmd, args, {
+  const child = spawn(cmd, args, {
     cwd,
     env: { ...process.env, ...env },
-    stdio: "inherit",
+    stdio: ["inherit", "inherit", "pipe"], // Redirect stderr to pipe so we can filter it
   });
+
+  // Filter out expected termination messages from stderr
+  child.stderr?.on("data", (data) => {
+    const message = data.toString();
+    // Ignore expected termination errors (exit code 143 = SIGTERM)
+    if (!message.includes("exited with code 143")) {
+      process.stderr.write(data);
+    }
+  });
+
+  return child;
 }
 
 async function checkHttpOk(url, { timeoutMs = 2_000 } = {}) {
@@ -234,7 +245,10 @@ async function main() {
   } finally {
     await browser.close();
     if (previewProcess) {
+      // Gracefully terminate the preview server
       previewProcess.kill("SIGTERM");
+      // Wait a moment for clean shutdown (SIGTERM exit code 143 is expected and normal)
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
   }
 }

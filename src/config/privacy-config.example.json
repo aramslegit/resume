@@ -1,0 +1,15 @@
+{
+  "groups": {
+    "contact": true,
+    "company": true,
+    "experienceCompanies": true
+  },
+  "fields": {
+    "phone": false,
+    "email": true,
+    "location": true,
+    "linkedIn": true,
+    "companyName": true,
+    "experienceCompanies": true
+  }
+}

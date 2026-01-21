@@ -53,10 +53,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       // ignore
     }
 
-    const values = { name: copy.hero.name, role: copy.hero.role };
+    const fullName = `${copy.hero.firstName} ${copy.hero.lastName}`;
+    const values = { name: fullName, role: copy.hero.role };
     const title = format(copy.meta.title, values);
     const ogTitle = format(copy.meta.ogTitle, values);
-    const author = format(copy.meta.author, { name: copy.hero.name });
+    const author = format(copy.meta.author, { name: fullName });
 
     try {
       document.title = title;

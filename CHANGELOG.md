@@ -2,11 +2,11 @@
 
 ### ⚠ BREAKING CHANGES
 
-* Update project configuration and enhance UI components
+- Update project configuration and enhance UI components
 
 ### Features
 
-* Update project configuration and enhance UI components ([544599d](https://github.com/aramslegit/resume/commit/544599d5a13f5920ace1d0500ebdf58db721ebeb))
+- Update project configuration and enhance UI components ([544599d](https://github.com/aramslegit/resume/commit/544599d5a13f5920ace1d0500ebdf58db721ebeb))
 
 ## 1.0.0-dev.1 (2026-01-21)
 

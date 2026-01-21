@@ -62,7 +62,8 @@ export const translations: Record<Language, ResumeCopy> = {
       },
     },
     hero: {
-      name: "Aram Mamian",
+      firstName: "Aram",
+      lastName: "Mamian",
       download: "Download",
       role: "Hybrid IT Professional",
       location: "Mechelen, Belgium",
@@ -345,7 +346,8 @@ export const translations: Record<Language, ResumeCopy> = {
       },
     },
     hero: {
-      name: "Aram Mamian",
+      firstName: "Aram",
+      lastName: "Mamian",
       download: "Download",
       role: "Hybride IT-professional",
       location: "Mechelen, België",
@@ -628,7 +630,8 @@ export const translations: Record<Language, ResumeCopy> = {
       },
     },
     hero: {
-      name: "Aram Mamian",
+      firstName: "Aram",
+      lastName: "Mamian",
       download: "Télécharger",
       role: "Professionnel IT hybride",
       location: "Malines, Belgique",

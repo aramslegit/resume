@@ -1,8 +1,10 @@
 import { Building2, Calendar } from "lucide-react";
 import { useI18n } from "@/i18n";
+import { usePrivacy } from "@/hooks/use-privacy";
 
 const ExperienceSection = () => {
   const { copy } = useI18n();
+  const { isVisible } = usePrivacy();
   const experiences = copy.experience.items;
 
   return (
@@ -17,7 +19,9 @@ const ExperienceSection = () => {
             <div className="mb-4 flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
               <div>
                 <h3 className="font-serif text-xl font-semibold text-foreground">{exp.title}</h3>
-                <p className="font-medium text-accent">{exp.company}</p>
+                {isVisible("experienceCompanies") && (
+                  <p className="font-medium text-accent">{exp.company}</p>
+                )}
                 <p className="text-sm text-muted-foreground">{exp.location}</p>
               </div>
               <div className="flex items-center gap-2 whitespace-nowrap text-sm text-muted-foreground">
