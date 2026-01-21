@@ -64,8 +64,8 @@ const technologies = [
 const languages = [
   { name: "Dutch", level: "Native" },
   { name: "English", level: "Fluent" },
-  { name: "French", level: "Fluent" },
-  { name: "Armenian", level: "Conversational" },
+  { name: "French", level: "Professional" },
+  { name: "Armenian", level: "Fluent" },
   { name: "German", level: "Basic" },
 ];
 
