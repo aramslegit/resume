@@ -16,8 +16,9 @@ const experiences: Experience[] = [
     location: "Louvain-la-Neuve",
     period: "February 2020 — Present",
     description:
-      "Founded a software development and project management company. From 2020 to 2024, led the Automation practice at Partena Professional.",
+      "Founded a software development and project management company. Lead a dynamic team of developers and analysts, overseeing project delivery, resource allocation, and professional growth. From 2020 to 2024, led the Automation practice at Partena Professional.",
     bullets: [
+      "Manage and mentor a distributed team of developers and analysts, fostering collaboration and ensuring high-quality deliverables",
       "Drove RPA discovery, delivery, and operations using Blue Prism, reducing manual processing time by 60%+",
       "Developed custom applications and scripts in C#, VB, and Python for enterprise automation",
       "Built low-code solutions with Retool and Power Automate, accelerating internal tool delivery",
