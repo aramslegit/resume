@@ -1,9 +1,27 @@
 import profilePhoto from "@/assets/profile-photo.jpeg";
 import { Mail, Phone, MapPin, Linkedin, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ThemeToggle from "./ThemeToggle";
 
 const HeroSection = () => {
   return (
     <section className="relative pb-12 md:pb-20">
+      {/* Header with theme toggle and download */}
+      <div className="flex justify-end gap-2 mb-6">
+        <Button
+          variant="outline"
+          size="sm"
+          asChild
+          className="gap-2"
+        >
+          <a href="/Aram_Mamian_Resume.pdf" download>
+            <Download className="w-4 h-4" />
+            Download CV
+          </a>
+        </Button>
+        <ThemeToggle />
+      </div>
+
       <div className="flex flex-col md:flex-row gap-8 md:gap-12 items-start">
         {/* Profile Photo */}
         <div className="animate-fade-in">
@@ -31,10 +49,11 @@ const HeroSection = () => {
             Hybrid IT Professional
           </p>
           <p className="text-base md:text-lg text-secondary-foreground leading-relaxed max-w-2xl mb-8">
-            Full-stack development expertise blended with strategic project leadership. 
-            Equally comfortable architecting and coding applications or steering multi-team 
-            projects from concept to launch. Founded Stratae in 2020—a software development, 
-            project management, and delivery company.
+            Full-stack development expertise blended with strategic project leadership and business analysis. 
+            Equally comfortable architecting applications, conducting functional analysis, or steering 
+            multi-team projects from concept to launch. Founded <strong>Stratae</strong> in 2020—a software 
+            development, project management, and delivery company—where I lead a dynamic team of developers 
+            and analysts on digital product initiatives.
           </p>
 
           {/* Contact Info */}
