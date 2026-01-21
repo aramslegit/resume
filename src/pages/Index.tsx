@@ -3,26 +3,39 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
-        <HeroSection />
+        <ScrollReveal>
+          <HeroSection />
+        </ScrollReveal>
         
         <div className="space-y-16 md:space-y-20">
-          <ExperienceSection />
-          <ProjectsSection />
-          <SkillsSection />
-          <EducationSection />
+          <ScrollReveal delay={0.1}>
+            <ExperienceSection />
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <ProjectsSection />
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <SkillsSection />
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <EducationSection />
+          </ScrollReveal>
         </div>
 
         {/* Footer */}
-        <footer className="mt-20 pt-8 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Aram Mamian. Available for new opportunities.
-          </p>
-        </footer>
+        <ScrollReveal delay={0.1}>
+          <footer className="mt-20 pt-8 border-t border-border text-center">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Aram Mamian. Available for new opportunities.
+            </p>
+          </footer>
+        </ScrollReveal>
       </div>
     </div>
   );
