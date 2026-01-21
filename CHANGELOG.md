@@ -1,3 +1,9 @@
+## [1.1.0-dev.1](https://github.com/aramslegit/resume/compare/v1.0.0...v1.1.0-dev.1) (2026-01-21)
+
+### Features
+
+* enhance privacy features and improve resume display ([6aea04f](https://github.com/aramslegit/resume/commit/6aea04f4b8a45328929c6bbd6113689c06cbd09e))
+
 ## 1.0.0 (2026-01-21)
 
 ### ⚠ BREAKING CHANGES
