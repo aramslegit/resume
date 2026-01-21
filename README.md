@@ -36,6 +36,36 @@ npm i
 npm run dev
 ```
 
+## Generate language-specific CV PDFs
+
+This project can generate **one PDF per language** (currently: `en`, `nl`, `fr`) using a print-friendly route and a headless browser export.
+
+### One-time setup
+
+```sh
+npm i -D playwright
+npx playwright install chromium
+```
+
+### Generate PDFs (recommended: build + preview + export)
+
+```sh
+npm run pdf:generate
+```
+
+This will:
+
+- Write timestamped archives to `public/cv-archive/`
+- Overwrite the “latest” PDFs used by the website in `public/cv/`
+
+### Generate PDFs from an already-running dev server (optional)
+
+If you already have `npm run dev` running (default: `http://localhost:8080`):
+
+```sh
+npm run pdf:generate -- --base-url http://127.0.0.1:8080 --skip-build --skip-preview
+```
+
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).

@@ -1,85 +1,19 @@
 import { Wrench, Code, Globe } from "lucide-react";
-
-const coreSkills = [
-  "Full-Stack Development",
-  "Mobile App Development",
-  "Project Management",
-  "Business Analysis",
-  "Functional Analysis",
-  "Team Leadership",
-  "Resource Management",
-  "Agile Methodologies",
-  "Process Automation",
-  "Solution Architecture",
-  "Technical Mentoring",
-  "Product Discovery",
-  "Stakeholder Management",
-  "Requirements Gathering",
-  "RPA Center of Excellence",
-  "Cross-functional Collaboration",
-];
-
-const technologies = [
-  // Frontend
-  "JavaScript",
-  "TypeScript",
-  "React",
-  "React Native",
-  "Expo",
-  "Vue",
-  "Nuxt",
-  "Svelte",
-  "Tailwind CSS",
-  "Vuetify",
-  // Backend
-  "Node.js",
-  "NestJS",
-  "Hono",
-  "tRPC",
-  "REST APIs",
-  "GraphQL",
-  // Databases
-  "PostgreSQL",
-  "MongoDB",
-  "SQL",
-  "Supabase",
-  // Languages
-  "C#",
-  "Python",
-  "VB.NET",
-  // RPA & Automation
-  "Blue Prism",
-  "UiPath",
-  "Power Automate",
-  "Retool",
-  // Other
-  "React Query",
-  "i18n",
-  "Git",
-  "CI/CD",
-  "Chrome Extensions",
-  "NLP",
-];
-
-const languages = [
-  { name: "Dutch", level: "Native" },
-  { name: "English", level: "Fluent" },
-  { name: "French", level: "Professional" },
-  { name: "Armenian", level: "Fluent" },
-  { name: "German", level: "Basic" },
-];
+import { useI18n } from "@/i18n";
 
 const SkillsSection = () => {
+  const { copy } = useI18n();
+
   return (
     <section className="animate-slide-up animate-delay-300 space-y-10">
       {/* Core Skills */}
       <div>
         <h2 className="section-heading flex items-center gap-2">
           <Wrench className="w-4 h-4" />
-          Core Competencies
+          {copy.skills.coreTitle}
         </h2>
         <div className="flex flex-wrap gap-2">
-          {coreSkills.map((skill, index) => (
+          {copy.skills.core.map((skill, index) => (
             <span key={index} className="skill-badge">
               {skill}
             </span>
@@ -91,10 +25,10 @@ const SkillsSection = () => {
       <div>
         <h2 className="section-heading flex items-center gap-2">
           <Code className="w-4 h-4" />
-          Technologies & Tools
+          {copy.skills.technologiesTitle}
         </h2>
         <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, index) => (
+          {copy.skills.technologies.map((tech, index) => (
             <span key={index} className="tech-badge">
               {tech}
             </span>
@@ -106,10 +40,10 @@ const SkillsSection = () => {
       <div>
         <h2 className="section-heading flex items-center gap-2">
           <Globe className="w-4 h-4" />
-          Languages
+          {copy.skills.languagesTitle}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {languages.map((lang, index) => (
+          {copy.skills.languages.map((lang, index) => (
             <div key={index} className="text-center p-4 rounded-xl bg-secondary/30">
               <p className="font-medium text-foreground">{lang.name}</p>
               <p className="text-sm text-muted-foreground">{lang.level}</p>

@@ -1,28 +1,15 @@
 import { GraduationCap, Calendar } from "lucide-react";
-
-const education = [
-  {
-    degree: "Master of Science (MSc)",
-    field: "Business Engineering",
-    institution: "KU Leuven",
-    location: "Leuven",
-    period: "October 2014 — January 2017",
-  },
-  {
-    degree: "Bachelor of Science (BSc)",
-    field: "Business Engineering",
-    institution: "KU Leuven",
-    location: "Leuven",
-    period: "October 2010 — September 2014",
-  },
-];
+import { useI18n } from "@/i18n";
 
 const EducationSection = () => {
+  const { copy } = useI18n();
+  const education = copy.education.items;
+
   return (
     <section className="animate-slide-up animate-delay-400">
       <h2 className="section-heading flex items-center gap-2">
         <GraduationCap className="w-4 h-4" />
-        Education
+        {copy.education.title}
       </h2>
       <div className="grid md:grid-cols-2 gap-6">
         {education.map((edu, index) => (

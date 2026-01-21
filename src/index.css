@@ -88,7 +88,9 @@
     font-family: 'Inter', sans-serif;
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: 'Playfair Display', serif;
   }
 }
@@ -173,6 +175,7 @@
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
     }
@@ -183,9 +186,153 @@
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Disable on-screen animations for deterministic PDFs */
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none !important;
+  }
+
+  /* Avoid splitting cards across pages */
+  .card-elevated {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid hsl(var(--border)) !important;
+  }
+
+  .shadow-elevated {
+    box-shadow: none !important;
+  }
+
+  /* Explicit page breaks for the PDF layout */
+  .pdf-break-after {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  /* Print-only compaction for the resume PDF route */
+  .pdf-root {
+    /* Shrink the whole typographic scale slightly for A4 */
+    font-size: 12px !important;
+    background: transparent !important;
+  }
+
+  .pdf-root .pdf-main {
+    background: transparent !important;
+  }
+
+  .pdf-root .pdf-container {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  .pdf-root .pdf-header {
+    margin-bottom: 16px !important;
+  }
+
+  .pdf-root .accent-bar {
+    margin-bottom: 10px !important;
+  }
+
+  .pdf-root .pdf-avatar {
+    width: 84px !important;
+    height: 84px !important;
+    border-radius: 9999px !important;
+  }
+
+  .pdf-root .pdf-name {
+    font-size: 32px !important;
+    line-height: 1.05 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .pdf-root .pdf-role {
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .pdf-root .pdf-summary {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .pdf-root .pdf-contact {
+    gap: 10px 16px !important;
+    font-size: 11px !important;
+  }
+
+  .pdf-root .pdf-main>*+* {
+    margin-top: 22px !important;
+  }
+
+  .pdf-root .section-heading {
+    margin-bottom: 12px !important;
+  }
+
+  .pdf-root .card-elevated {
+    padding: 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .pdf-root p,
+  .pdf-root li {
+    line-height: 1.35 !important;
+  }
+
+  .pdf-root .space-y-8>*+* {
+    margin-top: 14px !important;
+  }
+
+  .pdf-root .space-y-10>*+* {
+    margin-top: 18px !important;
+  }
+
+  .pdf-root .gap-6 {
+    gap: 14px !important;
+  }
+
+  .pdf-root .skill-badge {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+
+  .pdf-root .tech-badge {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+  }
+
+  .pdf-root .pdf-footer {
+    margin-top: 22px !important;
+    padding-top: 10px !important;
+  }
+
+  /* Keep colors but avoid underlines/noise */
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 }

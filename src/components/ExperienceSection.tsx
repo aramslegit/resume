@@ -1,63 +1,15 @@
 import { Building2, Calendar } from "lucide-react";
-
-interface Experience {
-  title: string;
-  company: string;
-  location: string;
-  period: string;
-  description?: string;
-  bullets: string[];
-}
-
-const experiences: Experience[] = [
-  {
-    title: "Founder & Lead Developer",
-    company: "Stratae",
-    location: "Louvain-la-Neuve",
-    period: "February 2020 — Present",
-    description:
-      "Founded a software development and project management company. Lead a dynamic team of developers and analysts, overseeing project delivery, resource allocation, and professional growth. From 2020 to 2024, led the Automation practice at Partena Professional.",
-    bullets: [
-      "Manage and mentor a distributed team of developers and analysts, fostering collaboration and ensuring high-quality deliverables",
-      "Drove RPA discovery, delivery, and operations using Blue Prism, reducing manual processing time by 60%+",
-      "Developed custom applications and scripts in C#, VB, and Python for enterprise automation",
-      "Built low-code solutions with Retool and Power Automate, accelerating internal tool delivery",
-      "Implemented chatbot solutions (Inbenta, Crisp, Intercom) improving customer response times",
-      "Created complex SQL queries serving multiple teams and stakeholders",
-      "Established company-wide product documentation systems improving knowledge sharing",
-    ],
-  },
-  {
-    title: "Automation Project Manager",
-    company: "BrightKnight (Belfius Studio)",
-    location: "Brussels",
-    period: "January 2019 — January 2020",
-    bullets: [
-      "Led the complete RPA Center of Excellence for Partena Professional",
-      "Collaborated directly with internal budget and product owners across business units",
-      "Engaged in sales initiatives with prospective clients",
-      "Mentored project managers and consultants on delivery excellence and technical best practices",
-    ],
-  },
-  {
-    title: "Technology Consultant",
-    company: "Accenture",
-    location: "Brussels",
-    period: "May 2017 — January 2019",
-    bullets: [
-      "Delivered end-to-end Natural Language Processing (NLP) projects for Belfius bank",
-      "Implemented Robotic Process Automation (RPA) solutions at enterprise scale",
-      "Bridged technical solutions with business requirements across multiple stakeholders",
-    ],
-  },
-];
+import { useI18n } from "@/i18n";
 
 const ExperienceSection = () => {
+  const { copy } = useI18n();
+  const experiences = copy.experience.items;
+
   return (
     <section className="animate-slide-up animate-delay-100">
       <h2 className="section-heading flex items-center gap-2">
         <Building2 className="w-4 h-4" />
-        Experience
+        {copy.experience.title}
       </h2>
       <div className="space-y-8">
         {experiences.map((exp, index) => (

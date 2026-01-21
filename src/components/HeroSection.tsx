@@ -2,11 +2,17 @@ import profilePhoto from "@/assets/profile-photo.jpeg";
 import { Mail, Phone, MapPin, Linkedin, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import { useI18n } from "@/i18n";
+import { getResumeLatestFilename, RESUME_LATEST_URL_DIR } from "@/config/resumeNaming";
 
 const HeroSection = () => {
+  const { copy, language, formatRich } = useI18n();
+  const resumeFilename = getResumeLatestFilename(language);
+
   return (
     <section className="relative pb-12 md:pb-20">
-      {/* Header with theme toggle and download */}
+      {/* Header with download, language and theme toggles */}
       <div className="flex justify-end gap-2 mb-6">
         <Button
           variant="outline"
@@ -14,11 +20,15 @@ const HeroSection = () => {
           asChild
           className="gap-2"
         >
-          <a href="/Aram_Mamian_Resume.pdf" download>
+          <a
+            href={`${RESUME_LATEST_URL_DIR}/${resumeFilename}`}
+            download={resumeFilename}
+          >
             <Download className="w-4 h-4" />
-            Download CV
+            {copy.hero.download}
           </a>
         </Button>
+        <LanguageToggle />
         <ThemeToggle />
       </div>
 
@@ -26,15 +36,15 @@ const HeroSection = () => {
         {/* Profile Photo */}
         <div className="animate-fade-in">
           <div className="relative">
-            <div className="w-36 h-36 md:w-44 md:h-44 rounded-2xl overflow-hidden shadow-elevated">
+            <div className="w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden shadow-elevated">
               <img
                 src={profilePhoto}
                 alt="Aram Mamian"
-                className="w-full h-full object-cover"
+                className="block w-full h-full object-cover object-[50%_30%] scale-[1.065]"
               />
             </div>
-            <div className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full bg-accent flex items-center justify-center shadow-lg">
-              <span className="text-accent-foreground text-sm">✓</span>
+            <div className="absolute bottom-2 right-4 translate-x-1/4 translate-y-1/4 w-8 h-8 md:w-9 md:h-9 rounded-full bg-accent flex items-center justify-center shadow-lg ring-4 ring-background">
+              <span className="text-checkmark-foreground text-sm">✓</span>
             </div>
           </div>
         </div>
@@ -46,14 +56,12 @@ const HeroSection = () => {
             Aram Mamian
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground font-light mb-6">
-            Hybrid IT Professional
+            {copy.hero.role}
           </p>
           <p className="text-base md:text-lg text-secondary-foreground leading-relaxed max-w-2xl mb-8">
-            Full-stack development expertise blended with strategic project leadership and business analysis. 
-            Equally comfortable architecting applications, conducting functional analysis, or steering 
-            multi-team projects from concept to launch. Founded <strong>Stratae</strong> in 2020—a software 
-            development, project management, and delivery company—where I lead a dynamic team of developers 
-            and analysts on digital product initiatives.
+            {formatRich(copy.hero.summary, {
+              companyName: <strong>{copy.hero.companyName}</strong>,
+            })}
           </p>
 
           {/* Contact Info */}
@@ -83,7 +91,7 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
             >
               <Linkedin className="w-4 h-4" />
-              LinkedIn
+              {copy.hero.linkedInLabel}
             </a>
           </div>
         </div>

@@ -4,8 +4,11 @@ import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import ScrollReveal from "@/components/ScrollReveal";
+import { useI18n } from "@/i18n";
 
 const Index = () => {
+  const { copy } = useI18n();
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
@@ -32,7 +35,7 @@ const Index = () => {
         <ScrollReveal delay={0.1}>
           <footer className="mt-20 pt-8 border-t border-border text-center">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Aram Mamian. Available for new opportunities.
+              © {new Date().getFullYear()} Aram Mamian. {copy.footer.availableForOpportunities}
             </p>
           </footer>
         </ScrollReveal>

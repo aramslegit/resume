@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Generated CV archives (timestamped PDFs)
+public/cv-archive/*.pdf
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
