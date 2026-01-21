@@ -72,7 +72,6 @@ function spawnLongRunning(cmd, args, { cwd, env } = {}) {
 
 async function waitForHttpOk(url, { timeoutMs = 60_000, intervalMs = 400 } = {}) {
   const start = Date.now();
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     try {
       const res = await fetch(url, { redirect: "follow" });
@@ -97,6 +96,8 @@ async function main() {
   const languages = (langsRaw ? langsRaw.split(",") : DEFAULT_LANGUAGES)
     .map((s) => s.trim())
     .filter(Boolean);
+
+  const theme = getArgValue("--theme");
 
   const skipBuild = hasFlag("--skip-build");
   const skipPreview = hasFlag("--skip-preview");
@@ -144,7 +145,8 @@ async function main() {
 
   try {
     for (const lang of languages) {
-      const url = `${baseUrl}/print/resume?lang=${encodeURIComponent(lang)}`;
+      const themeParam = theme ? `&theme=${encodeURIComponent(theme)}` : "";
+      const url = `${baseUrl}/print/resume?lang=${encodeURIComponent(lang)}${themeParam}`;
       const context = await browser.newContext({
         viewport: { width: 1280, height: 720 },
       });

@@ -2,7 +2,7 @@ import { Rocket } from "lucide-react";
 import { useI18n } from "@/i18n";
 
 const ProjectsSection = () => {
-  const { copy } = useI18n();
+  const { copy, format } = useI18n();
   const projects = copy.projects.items;
 
   return (
@@ -38,9 +38,16 @@ const ProjectsSection = () => {
             </ul>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech, techIndex) => (
-                <span key={techIndex} className="tech-badge">
+                <a
+                  key={techIndex}
+                  className="tech-badge"
+                  href={`https://www.google.com/search?q=${encodeURIComponent(tech)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={format(copy.a11y.searchGoogleFor, { query: tech })}
+                >
                   {tech}
-                </span>
+                </a>
               ))}
             </div>
           </div>

@@ -34,13 +34,75 @@ export interface ResumeCopy {
     toggleTheme: string;
     switchLanguage: string;
     languageMenuLabel: string;
+    searchGoogleFor: string;
+  };
+  languageMenu: {
+    languages: Record<Language, { short: string; name: string; nativeName: string }>;
+  };
+  themeMenu: {
+    paletteLabel: string;
+    modeLabel: string;
+    themes: {
+      default: { label: string; description: string };
+      linear: { label: string; description: string };
+      paper: { label: string; description: string };
+      terminal: { label: string; description: string };
+    };
+    modes: {
+      light: { label: string; hint: string };
+      dark: { label: string; hint: string };
+      system: { label: string; hint: string };
+    };
+  };
+  meta: {
+    title: string;
+    description: string;
+    ogTitle: string;
+    ogDescription: string;
+    author: string;
+  };
+  notFound: {
+    message: string;
+    returnHome: string;
+  };
+  ui: {
+    common: {
+      close: string;
+    };
+    sidebar: {
+      toggle: string;
+    };
+    breadcrumb: {
+      label: string;
+      more: string;
+    };
+    pagination: {
+      label: string;
+      previous: string;
+      next: string;
+      morePages: string;
+      goToPreviousPage: string;
+      goToNextPage: string;
+    };
+    carousel: {
+      roleDescription: string;
+      slideRoleDescription: string;
+      previousSlide: string;
+      nextSlide: string;
+    };
   };
   hero: {
+    name: string;
     download: string;
+    downloadLoading: string;
     role: string;
+    location: string;
+    email: string;
+    phone: string;
     companyName: string;
     summary: string;
     linkedInLabel: string;
+    helloTooltip: string;
   };
   experience: {
     title: string;
@@ -64,6 +126,7 @@ export interface ResumeCopy {
     items: EducationItem[];
   };
   footer: {
+    copyright: string;
     availableForOpportunities: string;
   };
 }

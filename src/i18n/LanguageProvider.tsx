@@ -43,15 +43,47 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }, [language]);
 
+  const copy = translations[language];
+
+  // Keep document metadata in sync with language.
+  useEffect(() => {
+    try {
+      document.documentElement.lang = language;
+    } catch {
+      // ignore
+    }
+
+    const values = { name: copy.hero.name, role: copy.hero.role };
+    const title = format(copy.meta.title, values);
+    const ogTitle = format(copy.meta.ogTitle, values);
+    const author = format(copy.meta.author, { name: copy.hero.name });
+
+    try {
+      document.title = title;
+    } catch {
+      // ignore
+    }
+
+    const setMeta = (attr: "name" | "property", key: string, content: string) => {
+      const el = document.querySelector(`meta[${attr}="${key}"]`);
+      if (el) el.setAttribute("content", content);
+    };
+
+    setMeta("name", "description", copy.meta.description);
+    setMeta("name", "author", author);
+    setMeta("property", "og:title", ogTitle);
+    setMeta("property", "og:description", copy.meta.ogDescription);
+  }, [language, copy]);
+
   const value = useMemo<LanguageContextValue>(() => {
     return {
       language,
       setLanguage,
-      copy: translations[language],
+      copy,
       format,
       formatRich,
     };
-  }, [language]);
+  }, [copy, language]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }

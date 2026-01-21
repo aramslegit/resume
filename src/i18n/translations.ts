@@ -6,14 +6,74 @@ export const translations: Record<Language, ResumeCopy> = {
       toggleTheme: "Toggle theme",
       switchLanguage: "Switch language",
       languageMenuLabel: "Language",
+      searchGoogleFor: "Search Google for {query}",
+    },
+    languageMenu: {
+      languages: {
+        en: { short: "EN", name: "English", nativeName: "English" },
+        nl: { short: "NL", name: "Dutch", nativeName: "Nederlands" },
+        fr: { short: "FR", name: "French", nativeName: "Français" },
+      },
+    },
+    themeMenu: {
+      paletteLabel: "Theme",
+      modeLabel: "Mode",
+      themes: {
+        default: { label: "Default", description: "Classic navy + amber" },
+        linear: { label: "Linear", description: "Cool neutrals + violet accent" },
+        paper: { label: "Paper", description: "Warm editorial, soft contrast" },
+        terminal: { label: "Terminal", description: "Mono-friendly, neon accents" },
+      },
+      modes: {
+        system: { label: "System", hint: "Follow OS" },
+        dark: { label: "Dark", hint: "Dark" },
+        light: { label: "Light", hint: "Light" },
+      },
+    },
+    meta: {
+      title: "{name} — {role}",
+      description:
+        "Hybrid IT professional blending full-stack development expertise with strategic project leadership. Founder of Stratae.",
+      ogTitle: "{name} — {role}",
+      ogDescription: "Full-stack development expertise blended with strategic project leadership.",
+      author: "{name}",
+    },
+    notFound: {
+      message: "Oops! Page not found",
+      returnHome: "Return to Home",
+    },
+    ui: {
+      common: { close: "Close" },
+      sidebar: { toggle: "Toggle Sidebar" },
+      breadcrumb: { label: "Breadcrumb", more: "More" },
+      pagination: {
+        label: "Pagination",
+        previous: "Previous",
+        next: "Next",
+        morePages: "More pages",
+        goToPreviousPage: "Go to previous page",
+        goToNextPage: "Go to next page",
+      },
+      carousel: {
+        roleDescription: "Carousel",
+        slideRoleDescription: "Slide",
+        previousSlide: "Previous slide",
+        nextSlide: "Next slide",
+      },
     },
     hero: {
+      name: "Aram Mamian",
       download: "Download",
+      downloadLoading: "Generating…",
       role: "Hybrid IT Professional",
+      location: "Mechelen, Belgium",
+      email: "aram@stratae.io",
+      phone: "+32 473 77 07 11",
       companyName: "Stratae",
       summary:
         "Full-stack development expertise blended with strategic project leadership and business analysis. Equally comfortable architecting applications, conducting functional analysis, or steering multi-team projects from concept to launch. Founded {companyName} in 2020—a software development, project management, and delivery company—where I lead a dynamic team of developers and analysts on digital product initiatives.",
       linkedInLabel: "LinkedIn",
+      helloTooltip: "Hello there!",
     },
     experience: {
       title: "Experience",
@@ -221,6 +281,7 @@ export const translations: Record<Language, ResumeCopy> = {
       ],
     },
     footer: {
+      copyright: "© {year} {name}.",
       availableForOpportunities: "Available for new opportunities.",
     },
   },
@@ -230,14 +291,74 @@ export const translations: Record<Language, ResumeCopy> = {
       toggleTheme: "Thema wisselen",
       switchLanguage: "Taal wisselen",
       languageMenuLabel: "Taal",
+      searchGoogleFor: "Zoek op Google naar {query}",
+    },
+    languageMenu: {
+      languages: {
+        en: { short: "EN", name: "Engels", nativeName: "English" },
+        nl: { short: "NL", name: "Nederlands", nativeName: "Nederlands" },
+        fr: { short: "FR", name: "Frans", nativeName: "Français" },
+      },
+    },
+    themeMenu: {
+      paletteLabel: "Thema",
+      modeLabel: "Modus",
+      themes: {
+        default: { label: "Standaard", description: "Klassiek navy + amber" },
+        linear: { label: "Linear", description: "Koele neutralen + violet accent" },
+        paper: { label: "Papier", description: "Warme editorial, zachte contrasten" },
+        terminal: { label: "Terminal", description: "Mono-vriendelijk, neon accenten" },
+      },
+      modes: {
+        system: { label: "Systeem", hint: "Volg OS" },
+        dark: { label: "Donker", hint: "Donker" },
+        light: { label: "Licht", hint: "Licht" },
+      },
+    },
+    meta: {
+      title: "{name} — {role}",
+      description:
+        "Hybride IT-professional met full-stack development expertise en strategisch projectleiderschap. Oprichter van Stratae.",
+      ogTitle: "{name} — {role}",
+      ogDescription: "Full-stack development expertise gecombineerd met strategisch projectleiderschap.",
+      author: "{name}",
+    },
+    notFound: {
+      message: "Oeps! Pagina niet gevonden",
+      returnHome: "Terug naar startpagina",
+    },
+    ui: {
+      common: { close: "Sluiten" },
+      sidebar: { toggle: "Zijbalk schakelen" },
+      breadcrumb: { label: "Navigatiepad", more: "Meer" },
+      pagination: {
+        label: "Paginering",
+        previous: "Vorige",
+        next: "Volgende",
+        morePages: "Meer pagina's",
+        goToPreviousPage: "Ga naar vorige pagina",
+        goToNextPage: "Ga naar volgende pagina",
+      },
+      carousel: {
+        roleDescription: "Carrousel",
+        slideRoleDescription: "Dia",
+        previousSlide: "Vorige dia",
+        nextSlide: "Volgende dia",
+      },
     },
     hero: {
+      name: "Aram Mamian",
       download: "Download",
+      downloadLoading: "Genereren…",
       role: "Hybride IT-professional",
+      location: "Mechelen, België",
+      email: "aram@stratae.io",
+      phone: "+32 473 77 07 11",
       companyName: "Stratae",
       summary:
         "Full-stack development expertise gecombineerd met strategisch projectleiderschap en businessanalyse. Even comfortabel met het ontwerpen van applicaties, het uitvoeren van functionele analyse of het aansturen van multi-team projecten van concept tot lancering. In 2020 richtte ik {companyName} op—een bedrijf voor softwareontwikkeling, projectmanagement en delivery—waar ik een dynamisch team van developers en analysts leid op digitale productinitiatieven.",
       linkedInLabel: "LinkedIn",
+      helloTooltip: "Hallo daar!",
     },
     experience: {
       title: "Ervaring",
@@ -445,6 +566,7 @@ export const translations: Record<Language, ResumeCopy> = {
       ],
     },
     footer: {
+      copyright: "© {year} {name}.",
       availableForOpportunities: "Beschikbaar voor nieuwe opportuniteiten.",
     },
   },
@@ -454,14 +576,74 @@ export const translations: Record<Language, ResumeCopy> = {
       toggleTheme: "Basculer le thème",
       switchLanguage: "Changer de langue",
       languageMenuLabel: "Langue",
+      searchGoogleFor: "Rechercher {query} sur Google",
+    },
+    languageMenu: {
+      languages: {
+        en: { short: "EN", name: "Anglais", nativeName: "English" },
+        nl: { short: "NL", name: "Néerlandais", nativeName: "Nederlands" },
+        fr: { short: "FR", name: "Français", nativeName: "Français" },
+      },
+    },
+    themeMenu: {
+      paletteLabel: "Thème",
+      modeLabel: "Mode",
+      themes: {
+        default: { label: "Par défaut", description: "Bleu marine classique + ambre" },
+        linear: { label: "Linear", description: "Neutres froids + accent violet" },
+        paper: { label: "Paper", description: "Éditorial chaleureux, contraste doux" },
+        terminal: { label: "Terminal", description: "Mono-friendly, accents néon" },
+      },
+      modes: {
+        system: { label: "Système", hint: "Suivre l’OS" },
+        dark: { label: "Sombre", hint: "Sombre" },
+        light: { label: "Clair", hint: "Clair" },
+      },
+    },
+    meta: {
+      title: "{name} — {role}",
+      description:
+        "Professionnel IT hybride combinant expertise en développement full-stack et gestion stratégique de projets. Fondateur de Stratae.",
+      ogTitle: "{name} — {role}",
+      ogDescription: "Expertise en développement full-stack, combinée à la gestion stratégique de projets.",
+      author: "{name}",
+    },
+    notFound: {
+      message: "Oups ! Page introuvable",
+      returnHome: "Retour à l’accueil",
+    },
+    ui: {
+      common: { close: "Fermer" },
+      sidebar: { toggle: "Basculer la barre latérale" },
+      breadcrumb: { label: "Fil d’Ariane", more: "Plus" },
+      pagination: {
+        label: "Pagination",
+        previous: "Précédent",
+        next: "Suivant",
+        morePages: "Plus de pages",
+        goToPreviousPage: "Aller à la page précédente",
+        goToNextPage: "Aller à la page suivante",
+      },
+      carousel: {
+        roleDescription: "Carrousel",
+        slideRoleDescription: "Diapositive",
+        previousSlide: "Diapositive précédente",
+        nextSlide: "Diapositive suivante",
+      },
     },
     hero: {
+      name: "Aram Mamian",
       download: "Télécharger",
+      downloadLoading: "Génération…",
       role: "Professionnel IT hybride",
+      location: "Malines, Belgique",
+      email: "aram@stratae.io",
+      phone: "+32 473 77 07 11",
       companyName: "Stratae",
       summary:
         "Expertise en développement full-stack, combinée à la gestion stratégique de projets et à l’analyse métier. À l’aise aussi bien pour concevoir l’architecture d’applications, mener l’analyse fonctionnelle ou piloter des projets multi-équipes de l’idée au lancement. J’ai fondé {companyName} en 2020—une société de développement logiciel, de gestion de projet et de delivery—où je dirige une équipe dynamique de développeurs et d’analystes sur des initiatives de produits digitaux.",
       linkedInLabel: "LinkedIn",
+      helloTooltip: "Bonjour !",
     },
     experience: {
       title: "Expérience",
@@ -669,6 +851,7 @@ export const translations: Record<Language, ResumeCopy> = {
       ],
     },
     footer: {
+      copyright: "© {year} {name}.",
       availableForOpportunities: "Disponible pour de nouvelles opportunités.",
     },
   },

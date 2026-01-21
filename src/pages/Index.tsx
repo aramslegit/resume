@@ -7,7 +7,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import { useI18n } from "@/i18n";
 
 const Index = () => {
-  const { copy } = useI18n();
+  const { copy, format } = useI18n();
 
   return (
     <div className="min-h-screen bg-background">
@@ -35,7 +35,8 @@ const Index = () => {
         <ScrollReveal delay={0.1}>
           <footer className="mt-20 pt-8 border-t border-border text-center">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Aram Mamian. {copy.footer.availableForOpportunities}
+              {format(copy.footer.copyright, { year: new Date().getFullYear(), name: copy.hero.name })}{" "}
+              {copy.footer.availableForOpportunities}
             </p>
           </footer>
         </ScrollReveal>

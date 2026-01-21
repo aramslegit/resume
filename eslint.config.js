@@ -23,4 +23,15 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  // shadcn/ui and i18n modules intentionally export helpers/types alongside components,
+  // which is incompatible with the strict Fast Refresh boundary rule.
+  {
+    files: ["src/components/ui/**/*.{ts,tsx}", "src/i18n/**/*.{ts,tsx}"],
+    plugins: {
+      "react-refresh": reactRefresh,
+    },
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );

@@ -18,7 +18,6 @@ export function formatRich(template: string, values: RichFormatValues): React.Re
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
-  // eslint-disable-next-line no-cond-assign
   while ((match = PLACEHOLDER_RE.exec(template))) {
     const [full, key] = match;
     const start = match.index;
