@@ -4,15 +4,19 @@ const coreSkills = [
   "Full-Stack Development",
   "Mobile App Development",
   "Project Management",
+  "Business Analysis",
+  "Functional Analysis",
   "Team Leadership",
+  "Resource Management",
   "Agile Methodologies",
   "Process Automation",
   "Solution Architecture",
   "Technical Mentoring",
   "Product Discovery",
   "Stakeholder Management",
-  "Requirements Analysis",
+  "Requirements Gathering",
   "RPA Center of Excellence",
+  "Cross-functional Collaboration",
 ];
 
 const technologies = [

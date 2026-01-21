@@ -78,11 +78,13 @@ const ProjectsSection = () => {
     <section className="animate-slide-up animate-delay-200">
       <h2 className="section-heading flex items-center gap-2">
         <Rocket className="w-4 h-4" />
-        Current Projects
+        Current Projects at Stratae
       </h2>
       <p className="text-secondary-foreground mb-6">
-        Since 2022, I've been developing digital products—conceptualising initial ideas, 
-        defining requirements, collaborating with UI/UX designers, and leading remote development teams.
+        Since 2022, through <strong>Stratae</strong>, I've been developing digital products end-to-end—from 
+        product discovery and requirements gathering to functional analysis, UI/UX collaboration, and 
+        full-stack development. I manage a dynamic team of remote developers and analysts, applying 
+        project management best practices to deliver high-quality solutions.
       </p>
       <div className="grid gap-6">
         {projects.map((project, index) => (
