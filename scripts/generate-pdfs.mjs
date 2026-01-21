@@ -1,16 +1,18 @@
 import { spawn } from "node:child_process";
-import { mkdir, writeFile, copyFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import {
   RESUME_ARCHIVE_PUBLIC_PATH,
   RESUME_LATEST_PUBLIC_PATH,
-  getResumeArchiveFilename,
-  getResumeLatestFilename,
+  getResumeArchiveVariantFilename,
+  getResumeVariantFilename,
 } from "../src/config/resumeNaming.js";
 
 const DEFAULT_LANGUAGES = ["en", "nl", "fr"];
+const DEFAULT_THEMES = ["linear", "classic", "paper", "terminal"];
 const DEFAULT_PORT = 4173;
 
 function assertSupportedNode() {
@@ -30,6 +32,14 @@ function getArgValue(flag) {
 
 function hasFlag(flag) {
   return process.argv.includes(flag);
+}
+
+function parseList(value, fallback) {
+  if (!value) return fallback;
+  return value
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
 }
 
 function timestampForFilename(date = new Date()) {
@@ -87,17 +97,16 @@ async function waitForHttpOk(url, { timeoutMs = 60_000, intervalMs = 400 } = {})
 }
 
 async function main() {
-  assertSupportedNode();
-
   const portRaw = getArgValue("--port");
   const port = portRaw ? Number(portRaw) : DEFAULT_PORT;
   const baseUrl = getArgValue("--base-url") ?? `http://127.0.0.1:${port}`;
   const langsRaw = getArgValue("--langs") ?? getArgValue("--languages");
-  const languages = (langsRaw ? langsRaw.split(",") : DEFAULT_LANGUAGES)
-    .map((s) => s.trim())
-    .filter(Boolean);
+  const languages = parseList(langsRaw, DEFAULT_LANGUAGES);
 
-  const theme = getArgValue("--theme");
+  const themes = parseList(getArgValue("--theme"), DEFAULT_THEMES);
+  const archive = hasFlag("--archive");
+  const force = hasFlag("--force");
+  const ifMissing = hasFlag("--if-missing");
 
   const skipBuild = hasFlag("--skip-build");
   const skipPreview = hasFlag("--skip-preview");
@@ -107,6 +116,27 @@ async function main() {
 
   const outLatestDir = path.join(repoRoot, ...RESUME_LATEST_PUBLIC_PATH);
   const outArchiveDir = path.join(repoRoot, ...RESUME_ARCHIVE_PUBLIC_PATH);
+
+  // Optional fast path (used by `npm run dev` via predev).
+  // When `--if-missing` is set, only generate if at least one expected PDF is missing.
+  if (!archive && ifMissing && !force) {
+    const missing = [];
+    for (const lang of languages) {
+      for (const theme of themes) {
+        const p = path.join(outLatestDir, getResumeVariantFilename(lang, theme));
+        if (!existsSync(p)) missing.push(path.relative(repoRoot, p));
+      }
+    }
+    if (missing.length === 0) {
+      console.log("Resume PDFs already exist. Skipping generation.");
+      return;
+    }
+    console.log("Missing resume PDFs (will generate):");
+    for (const p of missing) console.log(`- ${p}`);
+  }
+
+  assertSupportedNode();
+
   await mkdir(outLatestDir, { recursive: true });
   await mkdir(outArchiveDir, { recursive: true });
 
@@ -145,43 +175,43 @@ async function main() {
 
   try {
     for (const lang of languages) {
-      const themeParam = theme ? `&theme=${encodeURIComponent(theme)}` : "";
-      const url = `${baseUrl}/print/resume?lang=${encodeURIComponent(lang)}${themeParam}`;
-      const context = await browser.newContext({
-        viewport: { width: 1280, height: 720 },
-      });
-      const page = await context.newPage();
+      for (const theme of themes) {
+        const url = `${baseUrl}/print/resume?lang=${encodeURIComponent(lang)}&theme=${encodeURIComponent(theme)}`;
 
-      await page.goto(url, { waitUntil: "networkidle" });
-      await page.emulateMedia({ media: "print" });
+        const context = await browser.newContext({
+          viewport: { width: 1280, height: 720 },
+        });
+        const page = await context.newPage();
 
-      // Ensure fonts are ready before rendering PDF.
-      await page.waitForFunction(() => {
-        // @ts-ignore - fonts exists in browsers, not in TS DOM lib always
-        return document.fonts ? document.fonts.status === "loaded" : true;
-      });
+        await page.goto(url, { waitUntil: "networkidle" });
+        await page.emulateMedia({ media: "print" });
 
-      const pdf = await page.pdf({
-        format: "A4",
-        printBackground: true,
-        preferCSSPageSize: true,
-      });
+        // Ensure fonts are ready before rendering PDF.
+        await page.waitForFunction(() => {
+          // @ts-ignore - fonts exists in browsers, not in TS DOM lib always
+          return document.fonts ? document.fonts.status === "loaded" : true;
+        });
 
-      const archiveName = getResumeArchiveFilename(lang, ts);
-      const latestName = getResumeLatestFilename(lang);
+        const pdf = await page.pdf({
+          format: "A4",
+          printBackground: true,
+          preferCSSPageSize: true,
+        });
 
-      const archivePath = path.join(outArchiveDir, archiveName);
-      const latestPath = path.join(outLatestDir, latestName);
+        if (archive) {
+          const archiveName = getResumeArchiveVariantFilename(lang, theme, ts);
+          const archivePath = path.join(outArchiveDir, archiveName);
+          await writeFile(archivePath, pdf);
+          console.log(`Archived:  ${path.relative(repoRoot, archivePath)}`);
+        } else {
+          const latestName = getResumeVariantFilename(lang, theme);
+          const latestPath = path.join(outLatestDir, latestName);
+          await writeFile(latestPath, pdf);
+          console.log(`Generated: ${path.relative(repoRoot, latestPath)}`);
+        }
 
-      // First write to the archive with a unique timestamped name…
-      await writeFile(archivePath, pdf);
-      // …then overwrite the public "latest" PDF that the website links to.
-      await copyFile(archivePath, latestPath);
-
-      await context.close();
-
-      console.log(`Generated: ${path.relative(repoRoot, archivePath)}`);
-      console.log(`Updated:   ${path.relative(repoRoot, latestPath)}`);
+        await context.close();
+      }
     }
   } finally {
     await browser.close();
@@ -199,4 +229,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

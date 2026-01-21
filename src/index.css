@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,9 +7,12 @@
 @layer base {
   :root {
     /* Themeable fonts */
-    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Playfair Display', ui-serif, Georgia, serif;
-    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    --font-sans:
+      "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-display: "Playfair Display", ui-serif, Georgia, serif;
+    --font-mono:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      monospace;
 
     /* Sophisticated navy/slate palette */
     --background: 210 20% 98%;
@@ -53,7 +56,7 @@
   }
 
   /* No-op class used to avoid empty DOMTokenList operations in next-themes */
-  .theme-default {}
+  .theme-classic {}
 
   .dark {
     --background: 222 47% 8%;
@@ -89,7 +92,7 @@
      Linear-inspired theme
      ========================= */
   .theme-linear {
-    --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
 
     --background: 225 25% 98%;
     --foreground: 224 25% 12%;
@@ -162,7 +165,7 @@
      Paper theme (editorial)
      ========================= */
   .theme-paper {
-    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
 
     --background: 38 35% 97%;
     --foreground: 28 28% 14%;
@@ -235,8 +238,12 @@
      Terminal theme
      ========================= */
   .theme-terminal {
-    --font-sans: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
-    --font-display: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+    --font-sans:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      monospace;
+    --font-display:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      monospace;
 
     --background: 150 18% 97%;
     --foreground: 164 50% 10%;
@@ -268,7 +275,7 @@
     --gradient-hero: linear-gradient(135deg, hsl(142 72% 34%) 0%, hsl(192 90% 40%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(192 90% 40%) 0%, hsl(142 72% 34%) 100%);
     --shadow-soft: 0 6px 24px -10px hsl(142 72% 34% / 0.14);
-    --shadow-card: 0 10px 34px -18px hsl(164 50% 10% / 0.10);
+    --shadow-card: 0 10px 34px -18px hsl(164 50% 10% / 0.1);
     --shadow-elevated: 0 18px 52px -22px hsl(164 50% 10% / 0.12);
   }
 
@@ -316,6 +323,12 @@
     font-family: var(--font-sans);
   }
 
+  /* Terminal theme: reduce base font size as monospace fonts appear larger */
+  .theme-terminal {
+    font-size: 0.9375rem;
+    /* 15px, slightly smaller than default 16px */
+  }
+
   h1,
   h2,
   h3 {
@@ -325,12 +338,64 @@
 
 @layer components {
   .section-heading {
-    @apply text-sm font-semibold uppercase tracking-widest text-muted-foreground mb-6;
-    font-family: 'Inter', sans-serif;
+    @apply mb-6 text-sm font-semibold tracking-widest text-muted-foreground;
+    font-family: "Inter", sans-serif;
+  }
+
+  /* Terminal theme: reduce font sizes for larger text elements */
+  /* Using !important to override Tailwind utility classes */
+  .theme-terminal h1 {
+    font-size: 2.25rem !important;
+    /* 36px instead of default ~3rem+ */
+  }
+
+  .theme-terminal .text-4xl {
+    font-size: 2rem !important;
+    /* 32px instead of 36px */
+  }
+
+  .theme-terminal .text-5xl {
+    font-size: 2.5rem !important;
+    /* 40px instead of 48px */
+  }
+
+  .theme-terminal .text-6xl {
+    font-size: 3rem !important;
+    /* 48px instead of 60px */
+  }
+
+  .theme-terminal .text-xl {
+    font-size: 1.0625rem !important;
+    /* 17px instead of 20px */
+  }
+
+  .theme-terminal .text-2xl {
+    font-size: 1.375rem !important;
+    /* 22px instead of 24px */
+  }
+
+  .theme-terminal .text-lg {
+    font-size: 0.9375rem !important;
+    /* 15px instead of 18px */
+  }
+
+  .theme-terminal .text-base {
+    font-size: 0.875rem !important;
+    /* 14px instead of 16px */
+  }
+
+  .theme-terminal .text-sm {
+    font-size: 0.8125rem !important;
+    /* 13px instead of 14px */
+  }
+
+  .theme-terminal .text-xs {
+    font-size: 0.6875rem !important;
+    /* 11px instead of 12px */
   }
 
   .skill-badge {
-    @apply inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-secondary/50 text-secondary-foreground transition-colors duration-200;
+    @apply inline-flex items-center rounded-full border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors duration-200;
     text-decoration: none;
   }
 
@@ -352,7 +417,7 @@
   }
 
   .tech-badge {
-    @apply inline-flex items-center px-3 py-1.5 text-xs font-medium rounded-full bg-primary text-primary-foreground transition-colors duration-150 ease-out;
+    @apply inline-flex items-center rounded-full bg-primary px-3 py-1.5 text-xs font-medium text-primary-foreground transition-colors duration-150 ease-out;
     text-decoration: none;
     filter: none;
   }
@@ -362,20 +427,20 @@
   }
 
   .language-card {
-    @apply text-center p-4 rounded-xl bg-card/70 border border-border/50 shadow-sm motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out;
+    @apply rounded-xl border border-border/50 bg-card/70 p-4 text-center shadow-sm motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out;
     will-change: transform;
   }
 
   .timeline-dot {
-    @apply absolute left-0 top-2 w-3 h-3 rounded-full bg-accent border-2 border-background shadow-md;
+    @apply absolute left-0 top-2 h-3 w-3 rounded-full border-2 border-background bg-accent shadow-md;
   }
 
   .card-elevated {
-    @apply bg-card rounded-2xl p-6 md:p-8 motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out;
+    @apply rounded-2xl bg-card p-6 motion-safe:transition-transform motion-safe:duration-200 motion-safe:ease-out md:p-8;
     box-shadow: var(--shadow-card);
     will-change: transform;
   }
-  
+
   @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .card-elevated:hover {
       transform: translateY(-2px) scale(1.01);
@@ -405,17 +470,17 @@
   }
 
   .accent-bar {
-    @apply w-12 h-1 rounded-full mb-4;
+    @apply mb-4 h-1 w-12 rounded-full;
     background: var(--gradient-accent);
   }
 
   .link-hover {
-    @apply relative inline-block transition-colors duration-200 text-primary hover:text-accent;
+    @apply relative inline-block text-primary transition-colors duration-200 hover:text-accent;
   }
 
   .link-hover::after {
-    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300;
-    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 bg-accent transition-all duration-300;
+    content: "";
   }
 
   .link-hover:hover::after {
@@ -471,36 +536,6 @@
   }
 }
 
-/* =========================
-   Client-side PDF export
-   (used by the Download button)
-   ========================= */
-.pdf-export {
-  width: 210mm;
-  margin: 0 auto;
-  font-size: 12px;
-}
-
-.pdf-export .pdf-container {
-  max-width: none !important;
-  padding: 10mm !important;
-}
-
-.pdf-export .pdf-header {
-  margin-bottom: 16px !important;
-}
-
-.pdf-export .pdf-break-after {
-  break-after: page;
-  page-break-after: always;
-}
-
-.pdf-export .card-elevated,
-.pdf-export .pdf-section {
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-
 @media print {
   @page {
     size: A4;
@@ -509,7 +544,7 @@
 
   html,
   body {
-    /* Never apply page background in PDFs (theme-independent). */
+    /* PDFs must always have transparent backgrounds */
     background: transparent !important;
     color: hsl(var(--foreground)) !important;
     margin: 0 !important;
@@ -532,7 +567,6 @@
     border: 1px solid hsl(var(--border)) !important;
     transform: none !important;
     transition: none !important;
-    background: transparent !important;
   }
 
   .shadow-elevated {
@@ -546,13 +580,27 @@
   }
 
   /* Print-only compaction for the resume PDF route */
+  /* PDFs must ALWAYS have transparent backgrounds - never allow page/document backgrounds */
   .pdf-root {
     /* Shrink the whole typographic scale slightly for A4 */
     font-size: 12px !important;
+    /* Force transparent background - never allow background colors in PDFs */
     background: transparent !important;
   }
 
-  .pdf-root .pdf-main {
+  /* Terminal theme: reduce font size slightly as monospace fonts appear larger */
+  .pdf-root.theme-terminal {
+    font-size: 11px !important;
+  }
+
+  /* Ensure the PDF container has transparent background */
+  .pdf-root .pdf-container {
+    background: transparent !important;
+  }
+
+  /* Override bg-background class specifically (theme background) - must be transparent in PDFs */
+  .pdf-root .bg-background,
+  .pdf-root [class*="bg-background"] {
     background: transparent !important;
   }
 
@@ -567,10 +615,7 @@
 
   .pdf-root .accent-bar {
     margin-bottom: 10px !important;
-    /* Replace filled gradient with a simple themed line */
-    background: transparent !important;
-    height: 0 !important;
-    border-top: 3px solid hsl(var(--accent)) !important;
+    /* Keep the actual theme gradient for faithful output */
   }
 
   .pdf-root .pdf-avatar {
@@ -585,9 +630,17 @@
     margin-bottom: 4px !important;
   }
 
+  .pdf-root.theme-terminal .pdf-name {
+    font-size: 29px !important;
+  }
+
   .pdf-root .pdf-role {
     font-size: 16px !important;
     margin-bottom: 10px !important;
+  }
+
+  .pdf-root.theme-terminal .pdf-role {
+    font-size: 15px !important;
   }
 
   .pdf-root .pdf-summary {
@@ -596,13 +649,21 @@
     margin-bottom: 12px !important;
   }
 
+  .pdf-root.theme-terminal .pdf-summary {
+    font-size: 11px !important;
+  }
+
   .pdf-root .pdf-contact {
     gap: 10px 16px !important;
     font-size: 11px !important;
   }
 
+  .pdf-root.theme-terminal .pdf-contact {
+    font-size: 10px !important;
+  }
+
   .pdf-root .pdf-main>*+* {
-    margin-top: 22px !important;
+    margin-top: 36px !important;
   }
 
   .pdf-root .section-heading {
@@ -624,7 +685,15 @@
   }
 
   .pdf-root .space-y-10>*+* {
-    margin-top: 18px !important;
+    margin-top: 36px !important;
+  }
+
+  .pdf-root .space-y-16>*+* {
+    margin-top: 36px !important;
+  }
+
+  .pdf-root .space-y-20>*+* {
+    margin-top: 36px !important;
   }
 
   .pdf-root .gap-6 {
@@ -636,7 +705,10 @@
     font-size: 10px !important;
     transform: none !important;
     transition: none !important;
-    background: transparent !important;
+  }
+
+  .pdf-root.theme-terminal .skill-badge {
+    font-size: 9px !important;
   }
 
   .pdf-root .tech-badge {
@@ -645,15 +717,15 @@
     transform: none !important;
     transition: none !important;
     filter: none !important;
-    background: transparent !important;
-    border: 1px solid hsl(var(--primary)) !important;
-    color: hsl(var(--primary)) !important;
+  }
+
+  .pdf-root.theme-terminal .tech-badge {
+    font-size: 9px !important;
   }
 
   .pdf-root .language-card {
     padding: 10px !important;
     border-radius: 12px !important;
-    background: transparent !important;
     border: 1px solid hsl(var(--border)) !important;
     box-shadow: none !important;
     transform: none !important;
@@ -662,7 +734,7 @@
   }
 
   .pdf-root .pdf-footer {
-    margin-top: 22px !important;
+    margin-top: 36px !important;
     padding-top: 10px !important;
   }
 

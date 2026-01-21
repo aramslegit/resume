@@ -8,30 +8,25 @@ const ProjectsSection = () => {
   return (
     <section className="animate-slide-up animate-delay-200">
       <h2 className="section-heading flex items-center gap-2">
-        <Rocket className="w-4 h-4" />
+        <Rocket className="h-4 w-4" />
         {copy.projects.title}
       </h2>
-      <p className="text-secondary-foreground mb-6">
-        {copy.projects.intro}
-      </p>
+      <p className="mb-6 text-secondary-foreground">{copy.projects.intro}</p>
       <div className="grid gap-6">
         {projects.map((project, index) => (
           <div key={index} className="card-elevated group">
-            <div className="flex items-start justify-between gap-4 mb-4">
+            <div className="mb-4 flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-xl font-serif font-semibold text-foreground group-hover:text-accent transition-colors">
+                <h3 className="font-serif text-xl font-semibold text-foreground transition-colors group-hover:text-accent">
                   {project.name}
                 </h3>
               </div>
             </div>
-            <p className="text-secondary-foreground mb-4">{project.description}</p>
-            <ul className="space-y-2 mb-5">
+            <p className="mb-4 text-secondary-foreground">{project.description}</p>
+            <ul className="mb-5 space-y-2">
               {project.highlights.map((highlight, hIndex) => (
-                <li
-                  key={hIndex}
-                  className="flex items-start gap-3 text-sm text-muted-foreground"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                <li key={hIndex} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent" />
                   {highlight}
                 </li>
               ))}

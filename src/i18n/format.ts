@@ -38,4 +38,3 @@ export function formatRich(template: string, values: RichFormatValues): React.Re
   // Return a keyed array to avoid React "missing key" warnings.
   return parts.map((part, idx) => React.createElement(React.Fragment, { key: idx }, part));
 }
-

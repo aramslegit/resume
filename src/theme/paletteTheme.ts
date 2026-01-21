@@ -1,5 +1,11 @@
 import React from "react";
-import { DEFAULT_THEME, isThemeName, THEME_CLASS_BY_THEME, THEMES, type ThemeName } from "@/config/themes";
+import {
+  DEFAULT_THEME,
+  normalizeThemeName,
+  THEME_CLASS_BY_THEME,
+  THEMES,
+  type ThemeName,
+} from "@/config/themes";
 
 export type PaletteThemeContextValue = {
   theme: ThemeName;
@@ -20,7 +26,13 @@ export function applyPaletteClass(theme: ThemeName) {
 export function getInitialPaletteTheme(defaultTheme: ThemeName = DEFAULT_THEME): ThemeName {
   try {
     const raw = localStorage.getItem(PALETTE_THEME_STORAGE_KEY);
-    return isThemeName(raw) ? raw : defaultTheme;
+    const normalized = normalizeThemeName(raw);
+    if (normalized) {
+      // Migrate legacy stored value so we don't keep carrying the old id.
+      if (raw === "default") persistPaletteTheme(normalized);
+      return normalized;
+    }
+    return defaultTheme;
   } catch {
     return defaultTheme;
   }
@@ -39,4 +51,3 @@ export function usePaletteTheme() {
   if (!ctx) throw new Error("usePaletteTheme must be used within <PaletteThemeProvider />");
   return ctx;
 }
-

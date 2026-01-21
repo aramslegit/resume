@@ -43,8 +43,8 @@ export interface ResumeCopy {
     paletteLabel: string;
     modeLabel: string;
     themes: {
-      default: { label: string; description: string };
       linear: { label: string; description: string };
+      classic: { label: string; description: string };
       paper: { label: string; description: string };
       terminal: { label: string; description: string };
     };
@@ -94,7 +94,6 @@ export interface ResumeCopy {
   hero: {
     name: string;
     download: string;
-    downloadLoading: string;
     role: string;
     location: string;
     email: string;
@@ -130,4 +129,3 @@ export interface ResumeCopy {
     availableForOpportunities: string;
   };
 }
-

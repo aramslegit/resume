@@ -1,4 +1,11 @@
-import { DEFAULT_MODE, DEFAULT_THEME, isMode, isThemeName, type Mode, type ThemeName } from "@/config/themes";
+import {
+  DEFAULT_MODE,
+  DEFAULT_THEME,
+  isMode,
+  normalizeThemeName,
+  type Mode,
+  type ThemeName,
+} from "@/config/themes";
 
 export type RuntimeThemeConfig = {
   theme: ThemeName;
@@ -23,11 +30,10 @@ export async function loadRuntimeThemeConfig(): Promise<RuntimeThemeConfig> {
     const modeRaw = readStringProp(json, "mode");
 
     return {
-      theme: isThemeName(themeRaw) ? themeRaw : DEFAULT_THEME,
+      theme: normalizeThemeName(themeRaw) ?? DEFAULT_THEME,
       mode: isMode(modeRaw) ? modeRaw : DEFAULT_MODE,
     };
   } catch {
     return { theme: DEFAULT_THEME, mode: DEFAULT_MODE };
   }
 }
-

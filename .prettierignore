@@ -1,0 +1,14 @@
+node_modules
+.npm-cache
+dist
+coverage
+.cursor
+
+# PDFs and other non-source assets
+public/**/*.pdf
+public/archive
+public/resume
+
+# Lockfiles
+bun.lockb
+package-lock.json

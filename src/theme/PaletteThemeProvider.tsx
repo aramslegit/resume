@@ -13,7 +13,9 @@ export function PaletteThemeProvider({
   defaultTheme = DEFAULT_THEME,
   forcedTheme,
 }: React.PropsWithChildren<{ defaultTheme?: ThemeName; forcedTheme?: ThemeName }>) {
-  const [theme, setThemeState] = React.useState<ThemeName>(() => getInitialPaletteTheme(defaultTheme));
+  const [theme, setThemeState] = React.useState<ThemeName>(() =>
+    getInitialPaletteTheme(defaultTheme),
+  );
 
   const effectiveTheme = forcedTheme ?? theme;
 

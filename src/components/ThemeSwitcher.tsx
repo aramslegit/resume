@@ -28,7 +28,9 @@ const ThemeSwitcher = () => {
   const { copy } = useI18n();
 
   const activeMode: Mode = isMode(theme) ? theme : DEFAULT_MODE;
-  const activeItem = THEME_ITEMS.find((t) => t.id === paletteTheme) ?? THEME_ITEMS.find((t) => t.id === DEFAULT_THEME);
+  const activeItem =
+    THEME_ITEMS.find((t) => t.id === paletteTheme) ??
+    THEME_ITEMS.find((t) => t.id === DEFAULT_THEME);
   const TriggerIcon = activeItem?.icon ?? THEME_MENU_ICON;
 
   return (
@@ -48,7 +50,7 @@ const ThemeSwitcher = () => {
         >
           {THEME_ITEMS.map(({ id, icon: Icon }) => (
             <DropdownMenuRadioItem key={id} value={id}>
-              <div className="flex items-center w-full gap-3">
+              <div className="flex w-full items-center gap-3">
                 <div className="flex items-center gap-2">
                   <Icon className="h-4 w-4 text-muted-foreground" />
                   <span className="font-medium">{copy.themeMenu.themes[id].label}</span>
@@ -62,10 +64,13 @@ const ThemeSwitcher = () => {
         <DropdownMenuSeparator />
         <DropdownMenuLabel>{copy.themeMenu.modeLabel}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={activeMode} onValueChange={(value) => setTheme(value as Mode)}>
+        <DropdownMenuRadioGroup
+          value={activeMode}
+          onValueChange={(value) => setTheme(value as Mode)}
+        >
           {MODES.map((mode) => (
             <DropdownMenuRadioItem key={mode} value={mode}>
-              <div className="flex items-center justify-between w-full gap-3">
+              <div className="flex w-full items-center justify-between gap-3">
                 <span className="font-medium">{copy.themeMenu.modes[mode].label}</span>
                 <span className="text-xs text-muted-foreground">
                   {copy.themeMenu.modes[mode].hint}
@@ -80,4 +85,3 @@ const ThemeSwitcher = () => {
 };
 
 export default ThemeSwitcher;
-

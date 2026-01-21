@@ -8,7 +8,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import { useI18n, type Language } from "@/i18n";
-import { DEFAULT_THEME, isMode, isThemeName, type Mode, type ThemeName } from "@/config/themes";
+import { DEFAULT_THEME, isMode, normalizeThemeName, type Mode, type ThemeName } from "@/config/themes";
 import { loadRuntimeThemeConfig } from "@/config/themeConfig";
 import { usePaletteTheme } from "@/theme/paletteTheme";
 
@@ -40,7 +40,7 @@ const ResumePdf = () => {
 
       // Palette theme: follow configured theme, but allow `?theme=` override for generation.
       const fromQuery = searchParams.get("theme");
-      const queryTheme: ThemeName | null = isThemeName(fromQuery) ? fromQuery : null;
+      const queryTheme: ThemeName | null = normalizeThemeName(fromQuery);
       const configTheme = (await loadRuntimeThemeConfig()).theme;
       const pdfPaletteTheme = queryTheme ?? configTheme ?? DEFAULT_THEME;
 
@@ -61,33 +61,31 @@ const ResumePdf = () => {
     }
   }, [language, searchParams, setLanguage]);
 
-  const isExport = searchParams.get("export") === "1";
-
   return (
-    <div className={`pdf-root min-h-screen bg-background text-foreground${isExport ? " pdf-export" : ""}`}>
+    <div className="pdf-root min-h-screen text-foreground">
       <div className="pdf-container mx-auto max-w-4xl px-6 py-10">
         {/* Header */}
-        <header className="pdf-header mb-20">
-          <div className="flex flex-col sm:flex-row gap-8 items-start">
+        <header className="pdf-header">
+          <div className="flex flex-col items-start gap-8 sm:flex-row">
             <div className="shrink-0">
-              <div className="pdf-avatar w-28 h-28 rounded-full overflow-hidden shadow-elevated">
+              <div className="pdf-avatar h-28 w-28 overflow-hidden rounded-full shadow-elevated">
                 <img
                   src={profilePhoto}
                   alt={copy.hero.name}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
 
             <div className="flex-1">
               <div className="accent-bar" />
-              <h1 className="pdf-name text-4xl md:text-5xl font-serif font-semibold text-foreground mb-2">
+              <h1 className="pdf-name mb-2 font-serif text-4xl font-semibold text-foreground md:text-5xl">
                 {copy.hero.name}
               </h1>
-              <p className="pdf-role text-xl text-muted-foreground font-light mb-5">
+              <p className="pdf-role mb-5 text-xl font-light text-muted-foreground">
                 {copy.hero.role}
               </p>
-              <p className="pdf-summary text-base text-secondary-foreground leading-relaxed mb-6">
+              <p className="pdf-summary mb-6 text-base leading-relaxed text-secondary-foreground">
                 {formatRich(copy.hero.summary, {
                   companyName: <strong>{copy.hero.companyName}</strong>,
                 })}
@@ -98,25 +96,25 @@ const ResumePdf = () => {
                   href={`mailto:${copy.hero.email}`}
                   className="inline-flex items-center gap-2 text-muted-foreground"
                 >
-                  <Mail className="w-4 h-4" />
+                  <Mail className="h-4 w-4" />
                   {copy.hero.email}
                 </a>
                 <a
                   href={`tel:${copy.hero.phone.replace(/\s+/g, "")}`}
                   className="inline-flex items-center gap-2 text-muted-foreground"
                 >
-                  <Phone className="w-4 h-4" />
+                  <Phone className="h-4 w-4" />
                   {copy.hero.phone}
                 </a>
                 <span className="inline-flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="w-4 h-4" />
+                  <MapPin className="h-4 w-4" />
                   {copy.hero.location}
                 </span>
                 <a
                   href="https://linkedin.com/in/arammamian"
                   className="inline-flex items-center gap-2 text-muted-foreground"
                 >
-                  <Linkedin className="w-4 h-4" />
+                  <Linkedin className="h-4 w-4" />
                   {copy.hero.linkedInLabel}
                 </a>
               </div>
@@ -125,7 +123,7 @@ const ResumePdf = () => {
         </header>
 
         {/* Content */}
-        <main className="pdf-main space-y-14 bg-transparent">
+        <main className="pdf-main space-y-14 bg-transparent mt-12">
           <div className="pdf-section pdf-break-after">
             <ExperienceSection />
           </div>
@@ -140,9 +138,12 @@ const ResumePdf = () => {
           </div>
         </main>
 
-        <footer className="pdf-footer mt-14 pt-6 border-t border-border text-center">
+        <footer className="pdf-footer mt-14 border-t border-border pt-6 text-center">
           <p className="text-xs text-muted-foreground">
-            {format(copy.footer.copyright, { year: new Date().getFullYear(), name: copy.hero.name })}{" "}
+            {format(copy.footer.copyright, {
+              year: new Date().getFullYear(),
+              name: copy.hero.name,
+            })}{" "}
             {copy.footer.availableForOpportunities}
           </p>
         </footer>
@@ -152,4 +153,3 @@ const ResumePdf = () => {
 };
 
 export default ResumePdf;
-

@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/i18n";
-import { DEFAULT_MODE, DEFAULT_THEME, type Mode, type ThemeName } from "@/config/themes";
+import { DEFAULT_MODE, DEFAULT_THEME, normalizeThemeName, type Mode, type ThemeName } from "@/config/themes";
 import { loadRuntimeThemeConfig } from "@/config/themeConfig";
 import { PaletteThemeProvider } from "@/theme/PaletteThemeProvider";
 import { PALETTE_THEME_STORAGE_KEY, usePaletteTheme } from "@/theme/paletteTheme";
@@ -17,7 +17,13 @@ import { useTheme } from "next-themes";
 
 const queryClient = new QueryClient();
 
-function RuntimeThemeInitializer({ configuredTheme, configuredMode }: { configuredTheme: ThemeName; configuredMode: Mode }) {
+function RuntimeThemeInitializer({
+  configuredTheme,
+  configuredMode,
+}: {
+  configuredTheme: ThemeName;
+  configuredMode: Mode;
+}) {
   const { setTheme } = useTheme();
   const { setTheme: setPaletteTheme } = usePaletteTheme();
 
@@ -27,8 +33,8 @@ function RuntimeThemeInitializer({ configuredTheme, configuredMode }: { configur
       const storedMode = localStorage.getItem("theme"); // next-themes default storage key
       if (!storedMode) setTheme(configuredMode);
 
-      const storedPalette = localStorage.getItem(PALETTE_THEME_STORAGE_KEY);
-      if (!storedPalette) setPaletteTheme(configuredTheme);
+      const storedPaletteRaw = localStorage.getItem(PALETTE_THEME_STORAGE_KEY);
+      if (!normalizeThemeName(storedPaletteRaw)) setPaletteTheme(configuredTheme);
     } catch {
       // ignore
     }
@@ -56,13 +62,12 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <LanguageProvider>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme={DEFAULT_MODE}
-          enableSystem
-        >
+        <ThemeProvider attribute="class" defaultTheme={DEFAULT_MODE} enableSystem>
           <PaletteThemeProvider defaultTheme={configuredTheme}>
-            <RuntimeThemeInitializer configuredTheme={configuredTheme} configuredMode={configuredMode} />
+            <RuntimeThemeInitializer
+              configuredTheme={configuredTheme}
+              configuredMode={configuredMode}
+            />
             <TooltipProvider delayDuration={0}>
               <Toaster />
               <Sonner />

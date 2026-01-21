@@ -19,8 +19,8 @@ export const translations: Record<Language, ResumeCopy> = {
       paletteLabel: "Theme",
       modeLabel: "Mode",
       themes: {
-        default: { label: "Default", description: "Classic navy + amber" },
         linear: { label: "Linear", description: "Cool neutrals + violet accent" },
+        classic: { label: "Classic", description: "Classic navy + amber" },
         paper: { label: "Paper", description: "Warm editorial, soft contrast" },
         terminal: { label: "Terminal", description: "Mono-friendly, neon accents" },
       },
@@ -64,7 +64,6 @@ export const translations: Record<Language, ResumeCopy> = {
     hero: {
       name: "Aram Mamian",
       download: "Download",
-      downloadLoading: "Generating…",
       role: "Hybrid IT Professional",
       location: "Mechelen, Belgium",
       email: "aram@stratae.io",
@@ -173,14 +172,7 @@ export const translations: Record<Language, ResumeCopy> = {
           name: "Balas",
           description:
             "A mobile application for private social circles that centralises key social features including messaging, feeds, location sharing, calendar integration, and budget management.",
-          techStack: [
-            "Expo",
-            "React Native",
-            "Tailwind",
-            "Supabase",
-            "GraphQL",
-            "MongoDB",
-          ],
+          techStack: ["Expo", "React Native", "Tailwind", "Supabase", "GraphQL", "MongoDB"],
           highlights: [
             "Real-time messaging and activity feeds for private groups",
             "Integrated location sharing and calendar coordination",
@@ -304,8 +296,8 @@ export const translations: Record<Language, ResumeCopy> = {
       paletteLabel: "Thema",
       modeLabel: "Modus",
       themes: {
-        default: { label: "Standaard", description: "Klassiek navy + amber" },
         linear: { label: "Linear", description: "Koele neutralen + violet accent" },
+        classic: { label: "Klassiek", description: "Klassiek navy + amber" },
         paper: { label: "Papier", description: "Warme editorial, zachte contrasten" },
         terminal: { label: "Terminal", description: "Mono-vriendelijk, neon accenten" },
       },
@@ -320,7 +312,8 @@ export const translations: Record<Language, ResumeCopy> = {
       description:
         "Hybride IT-professional met full-stack development expertise en strategisch projectleiderschap. Oprichter van Stratae.",
       ogTitle: "{name} — {role}",
-      ogDescription: "Full-stack development expertise gecombineerd met strategisch projectleiderschap.",
+      ogDescription:
+        "Full-stack development expertise gecombineerd met strategisch projectleiderschap.",
       author: "{name}",
     },
     notFound: {
@@ -349,7 +342,6 @@ export const translations: Record<Language, ResumeCopy> = {
     hero: {
       name: "Aram Mamian",
       download: "Download",
-      downloadLoading: "Genereren…",
       role: "Hybride IT-professional",
       location: "Mechelen, België",
       email: "aram@stratae.io",
@@ -458,14 +450,7 @@ export const translations: Record<Language, ResumeCopy> = {
           name: "Balas",
           description:
             "Een mobiele applicatie voor private social circles die kernfunctionaliteiten centraliseert zoals messaging, feeds, location sharing, calendar integratie en budgetbeheer.",
-          techStack: [
-            "Expo",
-            "React Native",
-            "Tailwind",
-            "Supabase",
-            "GraphQL",
-            "MongoDB",
-          ],
+          techStack: ["Expo", "React Native", "Tailwind", "Supabase", "GraphQL", "MongoDB"],
           highlights: [
             "Real-time messaging en activity feeds voor private groepen",
             "Integratie van location sharing en kalendercoördinatie",
@@ -589,8 +574,8 @@ export const translations: Record<Language, ResumeCopy> = {
       paletteLabel: "Thème",
       modeLabel: "Mode",
       themes: {
-        default: { label: "Par défaut", description: "Bleu marine classique + ambre" },
         linear: { label: "Linear", description: "Neutres froids + accent violet" },
+        classic: { label: "Classique", description: "Bleu marine classique + ambre" },
         paper: { label: "Paper", description: "Éditorial chaleureux, contraste doux" },
         terminal: { label: "Terminal", description: "Mono-friendly, accents néon" },
       },
@@ -605,7 +590,8 @@ export const translations: Record<Language, ResumeCopy> = {
       description:
         "Professionnel IT hybride combinant expertise en développement full-stack et gestion stratégique de projets. Fondateur de Stratae.",
       ogTitle: "{name} — {role}",
-      ogDescription: "Expertise en développement full-stack, combinée à la gestion stratégique de projets.",
+      ogDescription:
+        "Expertise en développement full-stack, combinée à la gestion stratégique de projets.",
       author: "{name}",
     },
     notFound: {
@@ -634,7 +620,6 @@ export const translations: Record<Language, ResumeCopy> = {
     hero: {
       name: "Aram Mamian",
       download: "Télécharger",
-      downloadLoading: "Génération…",
       role: "Professionnel IT hybride",
       location: "Malines, Belgique",
       email: "aram@stratae.io",
@@ -643,7 +628,7 @@ export const translations: Record<Language, ResumeCopy> = {
       summary:
         "Expertise en développement full-stack, combinée à la gestion stratégique de projets et à l’analyse métier. À l’aise aussi bien pour concevoir l’architecture d’applications, mener l’analyse fonctionnelle ou piloter des projets multi-équipes de l’idée au lancement. J’ai fondé {companyName} en 2020—une société de développement logiciel, de gestion de projet et de delivery—où je dirige une équipe dynamique de développeurs et d’analystes sur des initiatives de produits digitaux.",
       linkedInLabel: "LinkedIn",
-      helloTooltip: "Bonjour !",
+      helloTooltip: "Bonjour!",
     },
     experience: {
       title: "Expérience",
@@ -743,14 +728,7 @@ export const translations: Record<Language, ResumeCopy> = {
           name: "Balas",
           description:
             "Une application mobile pour cercles sociaux privés qui centralise des fonctionnalités clés comme la messagerie, les feeds, le partage de localisation, l’intégration calendrier et la gestion de budget.",
-          techStack: [
-            "Expo",
-            "React Native",
-            "Tailwind",
-            "Supabase",
-            "GraphQL",
-            "MongoDB",
-          ],
+          techStack: ["Expo", "React Native", "Tailwind", "Supabase", "GraphQL", "MongoDB"],
           highlights: [
             "Messagerie en temps réel et activity feeds pour des groupes privés",
             "Partage de localisation et coordination via calendrier intégrés",
@@ -856,4 +834,3 @@ export const translations: Record<Language, ResumeCopy> = {
     },
   },
 };
-

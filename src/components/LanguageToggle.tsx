@@ -18,9 +18,7 @@ const LanguageToggle = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full">
-          <span className="text-[11px] font-semibold tracking-wide">
-            {labels[language].short}
-          </span>
+          <span className="text-[11px] font-semibold tracking-wide">{labels[language].short}</span>
           <span className="sr-only">{copy.a11y.switchLanguage}</span>
         </Button>
       </DropdownMenuTrigger>
@@ -33,11 +31,9 @@ const LanguageToggle = () => {
         >
           {(Object.keys(labels) as Language[]).map((key) => (
             <DropdownMenuRadioItem key={key} value={key}>
-              <div className="flex items-center justify-between w-full gap-3">
+              <div className="flex w-full items-center justify-between gap-3">
                 <span className="font-medium">{labels[key].name}</span>
-                <span className="text-xs text-muted-foreground">
-                  {labels[key].nativeName}
-                </span>
+                <span className="text-xs text-muted-foreground">{labels[key].nativeName}</span>
               </div>
             </DropdownMenuRadioItem>
           ))}
@@ -48,4 +44,3 @@ const LanguageToggle = () => {
 };
 
 export default LanguageToggle;
-

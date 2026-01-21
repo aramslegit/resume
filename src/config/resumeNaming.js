@@ -22,11 +22,30 @@ export function getResumeLatestFilename(language) {
   return `${RESUME_BASE_NAME}_${language}.${RESUME_PDF_EXTENSION}`;
 }
 
+/**
+ * Theme-specific resume filename (light mode only).
+ * Example: Aram_Mamian_Resume_en_linear.pdf
+ */
+export function getResumeVariantFilename(language, theme) {
+  return `${RESUME_BASE_NAME}_${language}_${theme}.${RESUME_PDF_EXTENSION}`;
+}
+
 export function getResumeArchiveFilename(language, timestamp) {
   return `${RESUME_BASE_NAME}_${language}_${timestamp}.${RESUME_PDF_EXTENSION}`;
+}
+
+/**
+ * Timestamped archive filename for a theme-specific resume (light mode only).
+ * Example: Aram_Mamian_Resume_en_linear_20260121_154201.pdf
+ */
+export function getResumeArchiveVariantFilename(language, theme, timestamp) {
+  return `${RESUME_BASE_NAME}_${language}_${theme}_${timestamp}.${RESUME_PDF_EXTENSION}`;
 }
 
 export function getResumeLatestHref(language) {
   return `${RESUME_LATEST_URL_DIR}/${getResumeLatestFilename(language)}`;
 }
 
+export function getResumeVariantHref(language, theme) {
+  return `${RESUME_LATEST_URL_DIR}/${getResumeVariantFilename(language, theme)}`;
+}

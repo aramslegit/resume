@@ -1,0 +1,6 @@
+---
+name: latest-node
+description: Use latest node
+---
+
+When running commands in terminal, always prerun 'nvm use 24'

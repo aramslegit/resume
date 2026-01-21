@@ -11,11 +11,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-4xl mx-auto px-6 py-12 md:py-20">
+      <div className="mx-auto max-w-4xl px-6 py-12 md:py-20">
         <ScrollReveal>
           <HeroSection />
         </ScrollReveal>
-        
+
         <div className="space-y-16 md:space-y-20">
           <ScrollReveal delay={0.1}>
             <ExperienceSection />
@@ -33,9 +33,12 @@ const Index = () => {
 
         {/* Footer */}
         <ScrollReveal delay={0.1}>
-          <footer className="mt-20 pt-8 border-t border-border text-center">
+          <footer className="mt-20 border-t border-border pt-8 text-center">
             <p className="text-sm text-muted-foreground">
-              {format(copy.footer.copyright, { year: new Date().getFullYear(), name: copy.hero.name })}{" "}
+              {format(copy.footer.copyright, {
+                year: new Date().getFullYear(),
+                name: copy.hero.name,
+              })}{" "}
               {copy.footer.availableForOpportunities}
             </p>
           </footer>

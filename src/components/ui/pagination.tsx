@@ -25,9 +25,9 @@ const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProp
 );
 PaginationContent.displayName = "PaginationContent";
 
-const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li">>(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("", className)} {...props} />
-));
+const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li">>(
+  ({ className, ...props }, ref) => <li ref={ref} className={cn("", className)} {...props} />,
+);
 PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = {
@@ -50,7 +50,10 @@ const PaginationLink = ({ className, isActive, size = "icon", ...props }: Pagina
 );
 PaginationLink.displayName = "PaginationLink";
 
-const PaginationPrevious = ({ className, ...props }: React.ComponentProps<typeof PaginationLink>) => {
+const PaginationPrevious = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof PaginationLink>) => {
   const { copy } = useI18n();
   return (
     <PaginationLink
@@ -85,7 +88,11 @@ PaginationNext.displayName = "PaginationNext";
 const PaginationEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => {
   const { copy } = useI18n();
   return (
-    <span aria-hidden className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+    <span
+      aria-hidden
+      className={cn("flex h-9 w-9 items-center justify-center", className)}
+      {...props}
+    >
       <MoreHorizontal className="h-4 w-4" />
       <span className="sr-only">{copy.ui.pagination.morePages}</span>
     </span>
