@@ -13,7 +13,7 @@ type LanguageContextValue = {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-const STORAGE_KEY = "stratae.language";
+const STORAGE_KEY = "resume.language";
 
 function normalizeLanguage(value: string | null): Language | null {
   if (!value) return null;

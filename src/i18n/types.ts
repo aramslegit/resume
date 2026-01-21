@@ -128,4 +128,9 @@ export interface ResumeCopy {
     copyright: string;
     availableForOpportunities: string;
   };
+  errorBoundary?: {
+    title: string;
+    message: string;
+    reload: string;
+  };
 }

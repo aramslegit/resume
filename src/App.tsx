@@ -13,6 +13,7 @@ import { PALETTE_THEME_STORAGE_KEY, usePaletteTheme } from "@/theme/paletteTheme
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ResumePdf from "./pages/ResumePdf";
+import ErrorBoundary from "./components/ErrorBoundary";
 import { useTheme } from "next-themes";
 
 const queryClient = new QueryClient();
@@ -71,14 +72,16 @@ const App = () => {
             <TooltipProvider delayDuration={0}>
               <Toaster />
               <Sonner />
-              <BrowserRouter>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/print/resume" element={<ResumePdf />} />
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
+              <ErrorBoundary>
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/print/resume" element={<ResumePdf />} />
+                    {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </ErrorBoundary>
             </TooltipProvider>
           </PaletteThemeProvider>
         </ThemeProvider>

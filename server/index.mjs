@@ -138,13 +138,27 @@ async function serveStatic(req, res) {
   const pathname = decodeURIComponent(url.pathname);
   const relPath = pathname.replace(/^\/+/, "");
 
+  // Additional security: reject paths with directory traversal attempts
+  if (relPath.includes("..") || relPath.includes("\0")) {
+    res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Invalid path");
+    return;
+  }
+
   // Serve assets directly from dist/ when they exist.
   const candidatePath = path.normalize(path.join(distDir, relPath));
   const distPrefix = distDir.endsWith(path.sep) ? distDir : `${distDir}${path.sep}`;
   const isInDist = candidatePath === distDir || candidatePath.startsWith(distPrefix);
+  
+  // Extra safety: ensure normalized path still starts with dist (prevents traversal after normalization)
+  if (!isInDist) {
+    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Not found");
+    return;
+  }
+
   if (
     pathname !== "/" &&
-    isInDist &&
     existsSync(candidatePath) &&
     !candidatePath.endsWith(path.sep)
   ) {

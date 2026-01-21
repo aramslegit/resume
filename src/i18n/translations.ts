@@ -276,6 +276,11 @@ export const translations: Record<Language, ResumeCopy> = {
       copyright: "© {year} {name}.",
       availableForOpportunities: "Available for new opportunities.",
     },
+    errorBoundary: {
+      title: "Something went wrong",
+      message: "An unexpected error occurred. Please try refreshing the page.",
+      reload: "Reload Page",
+    },
   },
 
   nl: {
@@ -554,6 +559,11 @@ export const translations: Record<Language, ResumeCopy> = {
       copyright: "© {year} {name}.",
       availableForOpportunities: "Beschikbaar voor nieuwe opportuniteiten.",
     },
+    errorBoundary: {
+      title: "Er is iets misgegaan",
+      message: "Er is een onverwachte fout opgetreden. Probeer de pagina te vernieuwen.",
+      reload: "Pagina vernieuwen",
+    },
   },
 
   fr: {
@@ -831,6 +841,11 @@ export const translations: Record<Language, ResumeCopy> = {
     footer: {
       copyright: "© {year} {name}.",
       availableForOpportunities: "Disponible pour de nouvelles opportunités.",
+    },
+    errorBoundary: {
+      title: "Une erreur s'est produite",
+      message: "Une erreur inattendue s'est produite. Veuillez essayer de rafraîchir la page.",
+      reload: "Recharger la page",
     },
   },
 };

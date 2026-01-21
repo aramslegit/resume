@@ -15,7 +15,7 @@ export type PaletteThemeContextValue = {
 
 export const PaletteThemeContext = React.createContext<PaletteThemeContextValue | null>(null);
 
-export const PALETTE_THEME_STORAGE_KEY = "stratae:palette-theme";
+export const PALETTE_THEME_STORAGE_KEY = "resume:palette-theme";
 
 export function applyPaletteClass(theme: ThemeName) {
   const root = document.documentElement;

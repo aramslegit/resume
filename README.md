@@ -1,4 +1,4 @@
-# Stratae
+# Resume
 
 Personal portfolio + resume site built with React/Vite, with:
 
