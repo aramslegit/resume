@@ -130,7 +130,7 @@ async function handleApiResumePdf(req, res) {
 async function serveStatic(req, res) {
   if (!existsSync(distDir)) {
     res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Missing dist/. Run `npm run build` first.");
+    res.end("Missing dist/. Run `bun run build` first.");
     return;
   }
 
@@ -149,7 +149,7 @@ async function serveStatic(req, res) {
   const candidatePath = path.normalize(path.join(distDir, relPath));
   const distPrefix = distDir.endsWith(path.sep) ? distDir : `${distDir}${path.sep}`;
   const isInDist = candidatePath === distDir || candidatePath.startsWith(distPrefix);
-  
+
   // Extra safety: ensure normalized path still starts with dist (prevents traversal after normalization)
   if (!isInDist) {
     res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
@@ -157,11 +157,7 @@ async function serveStatic(req, res) {
     return;
   }
 
-  if (
-    pathname !== "/" &&
-    existsSync(candidatePath) &&
-    !candidatePath.endsWith(path.sep)
-  ) {
+  if (pathname !== "/" && existsSync(candidatePath) && !candidatePath.endsWith(path.sep)) {
     res.writeHead(200, { "Content-Type": contentTypeForPath(candidatePath) });
     createReadStream(candidatePath).pipe(res);
     return;

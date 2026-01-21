@@ -53,8 +53,8 @@ function timestampForFilename(date = new Date()) {
   return `${yyyy}${mm}${dd}_${hh}${min}${ss}`;
 }
 
-function npmCmd() {
-  return process.platform === "win32" ? "npm.cmd" : "npm";
+function bunCmd() {
+  return process.platform === "win32" ? "bun.cmd" : "bun";
 }
 
 function run(cmd, args, { cwd, env } = {}) {
@@ -78,6 +78,18 @@ function spawnLongRunning(cmd, args, { cwd, env } = {}) {
     env: { ...process.env, ...env },
     stdio: "inherit",
   });
+}
+
+async function checkHttpOk(url, { timeoutMs = 2_000 } = {}) {
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    const res = await fetch(url, { redirect: "follow", signal: controller.signal });
+    clearTimeout(timeoutId);
+    return res.ok;
+  } catch {
+    return false;
+  }
 }
 
 async function waitForHttpOk(url, { timeoutMs = 60_000, intervalMs = 400 } = {}) {
@@ -117,7 +129,7 @@ async function main() {
   const outLatestDir = path.join(repoRoot, ...RESUME_LATEST_PUBLIC_PATH);
   const outArchiveDir = path.join(repoRoot, ...RESUME_ARCHIVE_PUBLIC_PATH);
 
-  // Optional fast path (used by `npm run dev` via predev).
+  // Optional fast path (used by `bun run dev` via predev).
   // When `--if-missing` is set, only generate if at least one expected PDF is missing.
   if (!archive && ifMissing && !force) {
     const missing = [];
@@ -146,26 +158,32 @@ async function main() {
   } catch (err) {
     console.error("\nMissing dependency: playwright\n");
     console.error("Install it with:");
-    console.error("  npm i -D playwright");
-    console.error("  npx playwright install chromium\n");
+    console.error("  bun add -d playwright");
+    console.error("  bunx playwright install chromium\n");
     throw err;
   }
 
   if (!skipBuild) {
-    await run(npmCmd(), ["run", "build"], { cwd: repoRoot });
+    await run(bunCmd(), ["run", "build"], { cwd: repoRoot });
   }
 
   let previewProcess = null;
   if (!skipPreview) {
-    previewProcess = spawnLongRunning(
-      npmCmd(),
-      ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port), "--strictPort"],
-      { cwd: repoRoot },
-    );
-    previewProcess.on("error", (e) => {
-      console.error("Preview process error:", e);
-    });
-    await waitForHttpOk(`${baseUrl}/`);
+    // Check if the server is already running on this port
+    const isAlreadyRunning = await checkHttpOk(`${baseUrl}/`);
+    if (isAlreadyRunning) {
+      console.log(`Server already running at ${baseUrl}, reusing it...`);
+    } else {
+      previewProcess = spawnLongRunning(
+        bunCmd(),
+        ["run", "preview", "--", "--host", "127.0.0.1", "--port", String(port)],
+        { cwd: repoRoot },
+      );
+      previewProcess.on("error", (e) => {
+        console.error("Preview process error:", e);
+      });
+      await waitForHttpOk(`${baseUrl}/`);
+    }
   } else {
     await waitForHttpOk(`${baseUrl}/`);
   }

@@ -26,7 +26,10 @@ const HeroSection = () => {
       {/* Header with download, language and theme toggles */}
       <div className="mb-6 flex justify-end gap-2">
         <Button variant="outline" size="sm" asChild className="gap-2">
-          <a href={`${RESUME_LATEST_URL_DIR}/${themedResumeFilename}`} download={themedResumeFilename}>
+          <a
+            href={`${RESUME_LATEST_URL_DIR}/${themedResumeFilename}`}
+            download={themedResumeFilename}
+          >
             <Download className="h-4 w-4" />
             {copy.hero.download}
           </a>

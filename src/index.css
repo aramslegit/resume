@@ -56,7 +56,8 @@
   }
 
   /* No-op class used to avoid empty DOMTokenList operations in next-themes */
-  .theme-classic {}
+  .theme-classic {
+  }
 
   .dark {
     --background: 222 47% 8%;
@@ -662,7 +663,7 @@
     font-size: 10px !important;
   }
 
-  .pdf-root .pdf-main>*+* {
+  .pdf-root .pdf-main > * + * {
     margin-top: 36px !important;
   }
 
@@ -680,19 +681,19 @@
     line-height: 1.35 !important;
   }
 
-  .pdf-root .space-y-8>*+* {
+  .pdf-root .space-y-8 > * + * {
     margin-top: 14px !important;
   }
 
-  .pdf-root .space-y-10>*+* {
+  .pdf-root .space-y-10 > * + * {
     margin-top: 36px !important;
   }
 
-  .pdf-root .space-y-16>*+* {
+  .pdf-root .space-y-16 > * + * {
     margin-top: 36px !important;
   }
 
-  .pdf-root .space-y-20>*+* {
+  .pdf-root .space-y-20 > * + * {
     margin-top: 36px !important;
   }
 

@@ -8,7 +8,13 @@ import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import { useI18n, type Language } from "@/i18n";
-import { DEFAULT_THEME, isMode, normalizeThemeName, type Mode, type ThemeName } from "@/config/themes";
+import {
+  DEFAULT_THEME,
+  isMode,
+  normalizeThemeName,
+  type Mode,
+  type ThemeName,
+} from "@/config/themes";
 import { loadRuntimeThemeConfig } from "@/config/themeConfig";
 import { usePaletteTheme } from "@/theme/paletteTheme";
 
@@ -123,7 +129,7 @@ const ResumePdf = () => {
         </header>
 
         {/* Content */}
-        <main className="pdf-main space-y-14 bg-transparent mt-12">
+        <main className="pdf-main mt-12 space-y-14 bg-transparent">
           <div className="pdf-section pdf-break-after">
             <ExperienceSection />
           </div>

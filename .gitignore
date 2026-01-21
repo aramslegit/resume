@@ -13,8 +13,11 @@ dist
 dist-ssr
 *.local
 
-# Generated CV archives (timestamped PDFs)
-public/cv-archive/*.pdf
+# Lockfiles
+package-lock.json
+
+# Generated resume archives (timestamped PDFs)
+public/archive/*
 
 # Editor directories and files
 .vscode/*

@@ -6,7 +6,13 @@ import { useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/i18n";
-import { DEFAULT_MODE, DEFAULT_THEME, normalizeThemeName, type Mode, type ThemeName } from "@/config/themes";
+import {
+  DEFAULT_MODE,
+  DEFAULT_THEME,
+  normalizeThemeName,
+  type Mode,
+  type ThemeName,
+} from "@/config/themes";
 import { loadRuntimeThemeConfig } from "@/config/themeConfig";
 import { PaletteThemeProvider } from "@/theme/PaletteThemeProvider";
 import { PALETTE_THEME_STORAGE_KEY, usePaletteTheme } from "@/theme/paletteTheme";

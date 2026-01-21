@@ -4,7 +4,7 @@
   "version": "1.0.0-dev.1",
   "type": "module",
   "scripts": {
-    "predev": "npm run pdf:generate -- --if-missing",
+    "predev": "bun run pdf:generate -- --if-missing",
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
@@ -103,5 +103,8 @@
     "typescript-eslint": "^8.38.0",
     "vite": "^7.3.1",
     "vitest": "^3.2.4"
-  }
+  },
+  "trustedDependencies": [
+    "@swc/core"
+  ]
 }

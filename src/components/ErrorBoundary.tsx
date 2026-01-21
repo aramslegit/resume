@@ -46,9 +46,12 @@ function ErrorFallback({ error }: { error: Error | null }) {
     <div className="flex min-h-screen items-center justify-center bg-muted p-6">
       <div className="max-w-md text-center">
         <h1 className="mb-4 text-4xl font-bold">⚠️</h1>
-        <h2 className="mb-2 text-2xl font-semibold">{copy.errorBoundary?.title ?? "Something went wrong"}</h2>
+        <h2 className="mb-2 text-2xl font-semibold">
+          {copy.errorBoundary?.title ?? "Something went wrong"}
+        </h2>
         <p className="mb-6 text-muted-foreground">
-          {copy.errorBoundary?.message ?? "An unexpected error occurred. Please try refreshing the page."}
+          {copy.errorBoundary?.message ??
+            "An unexpected error occurred. Please try refreshing the page."}
         </p>
         {import.meta.env.DEV && error && (
           <details className="mb-4 rounded-md bg-destructive/10 p-4 text-left text-sm">
