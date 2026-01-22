@@ -206,9 +206,14 @@ export const translations: Record<Language, ResumeCopy> = {
         "Cross-functional Collaboration",
       ],
       technologies: [
-        // Frontend
+        // Languages
         "JavaScript",
         "TypeScript",
+        "Python",
+        "C#",
+        "VB.NET",
+        "Java",
+        // Frontend
         "React",
         "React Native",
         "Expo",
@@ -222,29 +227,36 @@ export const translations: Record<Language, ResumeCopy> = {
         "NestJS",
         "Hono",
         "tRPC",
+        "Spring Boot",
+        ".NET",
+        "ASP.NET (Core)",
         "REST APIs",
         "GraphQL",
         // Databases
-        "PostgreSQL",
-        "MongoDB",
         "SQL",
+        "MS SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
         "Supabase",
-        // Languages
-        "C#",
-        "Python",
-        "VB.NET",
+        // Design
+        "Figma",
+        "UML",
+        "BPMN",
+        "Wireframing",
+        "Mockups",
         // RPA & Automation
         "Blue Prism",
         "UiPath",
         "Power Automate",
         "Retool",
+        "NLP",
         // Other
         "React Query",
         "i18n",
         "Git",
         "CI/CD",
-        "Chrome Extensions",
-        "NLP",
+        "Chromium Extensions",
       ],
       languages: [
         { name: "Dutch", level: "Native" },
@@ -490,9 +502,14 @@ export const translations: Record<Language, ResumeCopy> = {
         "Cross-functionele samenwerking",
       ],
       technologies: [
-        // Frontend
+        // Languages
         "JavaScript",
         "TypeScript",
+        "Python",
+        "C#",
+        "VB.NET",
+        "Java",
+        // Frontend
         "React",
         "React Native",
         "Expo",
@@ -506,29 +523,36 @@ export const translations: Record<Language, ResumeCopy> = {
         "NestJS",
         "Hono",
         "tRPC",
+        "Spring Boot",
+        ".NET",
+        "ASP.NET (Core)",
         "REST APIs",
         "GraphQL",
         // Databases
-        "PostgreSQL",
-        "MongoDB",
         "SQL",
+        "MS SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
         "Supabase",
-        // Languages
-        "C#",
-        "Python",
-        "VB.NET",
+        // Design
+        "Figma",
+        "UML",
+        "BPMN",
+        "Wireframing",
+        "Mockups",
         // RPA & Automation
         "Blue Prism",
         "UiPath",
         "Power Automate",
         "Retool",
+        "NLP",
         // Other
         "React Query",
         "i18n",
         "Git",
         "CI/CD",
-        "Chrome Extensions",
-        "NLP",
+        "Chromium Extensions",
       ],
       languages: [
         { name: "Nederlands", level: "Moedertaal" },
@@ -774,9 +798,14 @@ export const translations: Record<Language, ResumeCopy> = {
         "Collaboration cross-fonctionnelle",
       ],
       technologies: [
-        // Frontend
+        // Languages
         "JavaScript",
         "TypeScript",
+        "Python",
+        "C#",
+        "VB.NET",
+        "Java",
+        // Frontend
         "React",
         "React Native",
         "Expo",
@@ -790,29 +819,36 @@ export const translations: Record<Language, ResumeCopy> = {
         "NestJS",
         "Hono",
         "tRPC",
+        "Spring Boot",
+        ".NET",
+        "ASP.NET (Core)",
         "REST APIs",
         "GraphQL",
         // Databases
-        "PostgreSQL",
-        "MongoDB",
         "SQL",
+        "MS SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "MongoDB",
         "Supabase",
-        // Languages
-        "C#",
-        "Python",
-        "VB.NET",
+        // Design
+        "Figma",
+        "UML",
+        "BPMN",
+        "Wireframing",
+        "Mockups",
         // RPA & Automation
         "Blue Prism",
         "UiPath",
         "Power Automate",
         "Retool",
+        "NLP",
         // Other
         "React Query",
         "i18n",
         "Git",
         "CI/CD",
-        "Chrome Extensions",
-        "NLP",
+        "Chromium Extensions",
       ],
       languages: [
         { name: "Néerlandais", level: "Langue maternelle" },

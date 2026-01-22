@@ -2,7 +2,7 @@
 
 ### Features
 
-* enhance privacy features and improve resume display ([6aea04f](https://github.com/aramslegit/resume/commit/6aea04f4b8a45328929c6bbd6113689c06cbd09e))
+- enhance privacy features and improve resume display ([6aea04f](https://github.com/aramslegit/resume/commit/6aea04f4b8a45328929c6bbd6113689c06cbd09e))
 
 ## 1.0.0 (2026-01-21)
 
