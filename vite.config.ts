@@ -6,7 +6,6 @@ import { webcrypto } from "node:crypto";
 // Vite uses `crypto.getRandomValues()` in Node during builds.
 // Some environments don't provide Web Crypto on `globalThis.crypto`.
 if (!globalThis.crypto?.getRandomValues) {
-  // @ts-expect-error - Node's webcrypto matches the needed API surface.
   globalThis.crypto = webcrypto;
 }
 
