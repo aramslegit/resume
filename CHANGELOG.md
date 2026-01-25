@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/aramslegit/resume/compare/v1.1.0...v1.1.1) (2026-01-25)
+
+### Bug Fixes
+
+* remove unnecessary TypeScript error suppression in Vite config ([ebf6362](https://github.com/aramslegit/resume/commit/ebf6362d505160f6c7c9b343b8173b8d252656aa))
+
 ## [1.1.0](https://github.com/aramslegit/resume/compare/v1.0.0...v1.1.0) (2026-01-22)
 
 ### Features
