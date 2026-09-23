@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/aramslegit/resume/compare/v1.1.1...v1.2.0) (2026-09-23)
+
+### Features
+
+* add Stratae sub-roles, 1fifty and Manae cards, and nl/fr translations ([6ee17fd](https://github.com/aramslegit/resume/commit/6ee17fd2981c063d5a80d261432a562bb6cc7c73))
+
 ## [1.1.1](https://github.com/aramslegit/resume/compare/v1.1.0...v1.1.1) (2026-01-25)
 
 ### Bug Fixes
