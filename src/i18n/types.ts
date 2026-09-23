@@ -1,5 +1,13 @@
 export type Language = "en" | "nl" | "fr";
 
+export interface ExperienceRole {
+  title: string;
+  organization?: string;
+  period: string;
+  description?: string;
+  bullets: string[];
+}
+
 export interface ExperienceItem {
   title: string;
   company: string;
@@ -7,10 +15,12 @@ export interface ExperienceItem {
   period: string;
   description?: string;
   bullets: string[];
+  roles?: ExperienceRole[];
 }
 
 export interface ProjectItem {
   name: string;
+  url?: string;
   description: string;
   techStack: string[];
   highlights: string[];
@@ -114,6 +124,7 @@ export interface ResumeCopy {
     email: string;
     phone: string;
     companyName: string;
+    companyFallback: string;
     summary: string;
     linkedInLabel: string;
     helloTooltip: string;

@@ -1,4 +1,4 @@
-import { Rocket } from "lucide-react";
+import { ExternalLink, Rocket } from "lucide-react";
 import { useI18n } from "@/i18n";
 
 const ProjectsSection = () => {
@@ -21,6 +21,17 @@ const ProjectsSection = () => {
                   {project.name}
                 </h3>
               </div>
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 whitespace-nowrap text-sm text-muted-foreground transition-colors hover:text-accent"
+                >
+                  {project.url.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
             <p className="mb-4 text-secondary-foreground">{project.description}</p>
             <ul className="mb-5 space-y-2">

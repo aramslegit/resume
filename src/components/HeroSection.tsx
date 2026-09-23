@@ -95,7 +95,7 @@ const HeroSection = () => {
               companyName: isVisible("companyName") ? (
                 <strong>{copy.hero.companyName}</strong>
               ) : (
-                <strong>a software development company</strong>
+                <strong>{copy.hero.companyFallback}</strong>
               ),
             })}
           </p>
