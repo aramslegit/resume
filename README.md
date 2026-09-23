@@ -88,10 +88,7 @@ Supported flags:
 
 ## Releases (Semantic Versioning)
 
-This repo uses **semantic-release** via GitHub Actions (`.github/workflows/release.yml`).
-
-- **`development`**: pre-releases like `1.2.3-dev.4`
-- **`main`**: stable releases like `1.2.3`
+This repo uses a single **`main`** branch. Every push to `main` runs CI (`.github/workflows/ci.yml`) and **semantic-release** (`.github/workflows/release.yml`), which cuts stable releases like `1.2.3`.
 
 Version bumps follow **Conventional Commits**:
 

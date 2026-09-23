@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - development
 
 permissions:
   contents: write
@@ -12,14 +11,14 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: release-${{ github.ref_name }}
+  group: release
   cancel-in-progress: false
 
 jobs:
   release:
-    name: Release (${{ github.ref_name }})
+    name: Release
     runs-on: ubuntu-latest
-    environment: ${{ github.ref_name }}
+    environment: main
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]') }}
 
     steps:

@@ -3,9 +3,8 @@ name: CI
 on:
   pull_request:
   push:
-    branches-ignore:
-      - main
-      - development
+    branches:
+      - "**"
 
 permissions:
   contents: read
